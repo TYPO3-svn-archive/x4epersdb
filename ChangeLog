@@ -1,0 +1,33 @@
+2010-08-24 Markus Stauffiger <markus@4eyes.ch>
+	* Cleaned up the classes
+	* Added xclass lines where necessary
+	* Completed phpdoc
+
+10-08-09 manuel@4eyes.ch
+	- introduced new ts-constant alumniFuncUid which takes the uid of the function record supposed to be the alumnis
+
+10-07-09
+	- Fixed a problem with the usergroup sync in the hook
+
+10-07-09 alessandro@4eyes.ch
+	- pi1 erweitert:
+		Unterstützt nun auch darstellung von Mitglieder nach Funktion gruppiert (x4epersdb->pi3).
+
+	- Tabelle tx_x4ereseach_researchgroups & TCA erweitert:
+		um ein Auswahlfeld für die Darstellung der Mitglieder. Entweder wie bisher mit normalem ListView oder nach Funktion gruppiert.
+
+10-07-07 Markus
+	 - New typoscript variable listViewByFunction.excludeFunctionUids to exclude certain functions form listing
+
+08-11-26 Markus
+	- Search for people shows results now if $conf[hideListByDefault] =1
+
+06-01-18 Markus Stauffiger
+	* Added field tx_listfeuseruni_showpublics
+	* Added if statement for the "showpublics" flag
+
+(add new changes on top of this file)
+
+05-09-15 Markus Stauffiger  <markus@4eyes.ch>
+
+	* Initial release

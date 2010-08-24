@@ -1,0 +1,9 @@
+
+	.errHilite {
+		color: #ff0000;
+	}
+
+	input.errHilite {
+		background-color: #cccccc;
+		color: black;
+	}

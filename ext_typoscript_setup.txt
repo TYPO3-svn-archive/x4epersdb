@@ -1,0 +1,175 @@
+### see also x4epibase/ext_typoscript_setup for more configuration possibilities
+
+##########################
+# Configuration for the list and detail views
+##########################
+plugin.tx_x4epersdb_pi1 {
+	# page (sysfolder) containing the persons (even though it says fesers)
+	feUserPageUids = {$persDB.pidList}
+	# page (sysfolder) containing the persons (even though it says fesers)
+	feUsers.pidList = {$persDB.pidList}
+	# page uid on which all the publications of one person are displayed (if x4epublication is installed)
+	allPublicationsSiteUid = {$persDB.publicationPageUid}
+	# hist the persons flagged as alumni
+	hideAlumni = 1
+	# alumni function uid (if a function is used instead of the alumni flag)
+	alumniFuncUid = {$persDB.alumniFuncUid}
+	# page to redirect to, if person is not available
+	personNotAvailablePageUid = {$persDB.listPageUid}
+
+	detailView {
+		#publication plugin (if x4epublication is installed)
+		publication < plugin.tx_x4epublication_pi1
+		#number of publications to display on profil page (if x4epublication is installed)
+		numberOfLatestPublications = 3
+		#template file
+		templateFile = typo3conf/ext/x4epersdb/templates/detail.html
+		#image settings
+		image {
+			file.maxW = 115
+		}
+
+		# blocks are only displayed if any of the fields contained are displayed
+		blocks {
+			private {
+				fields = address,zip,city,country
+			}
+		}
+   }
+   listViewByFunction {
+   		# Hide list, just show the function-links
+		hideListByDefault = 0
+		
+		# exclude function uids from listing
+		excludeFunctionUids =
+   }
+   listView {
+		#template file
+		templateFile = typo3conf/ext/x4epersdb/templates/list.html
+		# detail page uid
+		detailPageUid = {$persDB.detailPageUid}
+
+		results_at_a_time =10
+		maxPages = 7
+		showResultCount = 1
+		showPBrowserText = 0
+		dontLinkActivePage = 1
+		tableParams = cellpadding="2" align="center"
+
+		showFirstLast = 1
+		pagefloat = center
+		showRange = 1
+		disabledLinkWrap = <span style="color:#bbb;">|</span>
+		inactiveLinkWrap = |
+		activeLinkWrap = <strong>|</strong>
+		LinksWrap =|
+		showResultsWrap = |<br />
+		showResultsNumbersWrap = |
+		browseBoxWrap =
+		browseLinksWrap = |
+		showFirstLast = 1
+		pagefloat = center
+		showRange = 1
+		showFirstLast = 1
+	}
+	skipHtmlEntitiesFields = all
+	# Number of chars per step (ex. 4 => A-D, E-H)
+	alphabeticPageBrowserStepSize = 4
+}
+
+
+##########################
+# Configuration for the personal menu plugin
+##########################
+plugin.tx_x4epersdb_pi2 = USER_INT
+plugin.tx_x4epersdb_pi2 {
+   templateFile = typo3conf/ext/x4epersdb/templates/menu.html
+   detailPageUid = {$persDB.detailPageUid}
+   persNav = HMENU
+   persNav.special = list
+
+   # special.value will be modified by the plugin
+   persNav.special.value = {$persDB.menuEntryPageUid}
+
+    persNav.1 = TMENU
+   	persNav.1.wrap = <ul> | </ul>
+    persNav.1 {
+      noBlur = 1
+      NO.allWrap = <li>|</li>
+	  #NO.ATagBeforeWrap = 1
+      NO.linkWrap = &gt;&nbsp;|
+      ACT = 1
+      ACT.allWrap = <li class="active">|</li>
+	  #ACT.ATagBeforeWrap = 1
+      ACT.linkWrap = &gt;&nbsp;|
+    }
+    editPublicationPages =
+    editQualificationPages =
+    changePasswordPage =
+    projectPageUid = {$persDB.projectPageUid}
+    entryPageUid = {$persDB.menuEntryPageUid}
+    resumePageUid = {$persDB.resumePageUid}
+    researchPageUid = {$persDB.researchPageUid}
+    displayOwnPageUid = {$persDB.displayOwnPageUid}
+    coursePageUid = {$persDB.coursePageUid}
+    publicationPageUid = {$persDB.publicationPageUid}
+    qualificationPageUid = {$persDB.qualificationPageUid}
+
+    researchGroupPageUid = {$persDB.researchGroupPageUid}
+    researchGroupDetailPageUid = {$researchGroupDB.detailPageUid}
+
+	officeHourPageUid = {$persDB.officeHourPageUid}
+	
+
+    onlyShowIfSessionEQUserUid = {$persDB.onlyShowIfSessionEQUserUid}
+	# show the personal pages on one single site
+    showPersPagesOnSinglePage = 1
+}
+
+##########################
+# Configuration for the person's short info
+##########################
+plugin.tx_x4epersdb_pi3 {
+   templateFile = typo3conf/ext/x4epersdb/templates/shortInfo.html
+   detailPageUid = {$persDB.detailPageUid}
+   showDetailLink = 1
+   splitByCategory = 1
+   onlyOneFunctionTitle = 1
+   sortby = lastname, firstname
+   showAlumni = 1
+   onlyOneFunctionTitle = 1
+   lecturesLinkUrl = http://www.isis.unibas.ch/doz-gibt-veranst.php
+   images {
+   		file.maxW = 100
+   		file.maxH = 150
+   }
+}
+
+##########################
+# Configuration for the "change password" plugin
+##########################
+plugin.tx_x4epersdb_pi4 {
+   templateFile = typo3conf/ext/x4epersdb/templates/changePassword.html
+   stylesheet = typo3conf/ext/x4epersdb/templates/style.css
+}
+
+##########################
+# Configuration for the "show content of this page" plugin
+##########################
+plugin.tx_x4epersdb_pi5 = USER_INT
+plugin.tx_x4epersdb_pi5 {
+
+}
+
+##########################
+# Configuration for the person's short info for research plugin
+##########################
+plugin.tx_x4epersdb_pi7 {
+   templateFile = typo3conf/ext/x4epersdb/templates/shortInfoForResearch.html
+   detailPageUid = {$persDB.detailPageUid}
+   lecturesLinkUrl = http://www.isis.unibas.ch/doz-gibt-veranst.php
+   images {
+   		file.maxW = 100
+   		file.maxH = 150
+   }
+}

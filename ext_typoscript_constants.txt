@@ -1,0 +1,40 @@
+persDB {
+	# uid of the persons sysfolders containing the persons
+    pidList =
+	# uid of the page with the detail view
+    detailPageUid =
+	# uid of the list page
+    listPageUid =
+	# uid of the page containig the personalized sites
+    menuEntryPageUid =
+	# uid of the page containing the resumee display
+    resumePageUid =
+	# uid of the page containing the research page uid
+    researchPageUid =
+	# uid of the page containing the plugin to display the own sites
+    displayOwnPageUid =
+
+	# page uid on which all the publications of one person are displayed (if x4epublication is installed)
+	publicationPageUid =
+
+	# page on which the projects of one person are shown (if x4eprojectsgeneral is installed)
+	projectPageUid =
+
+	# page on which the external links to the course is displayed
+	coursePageUid =
+
+	# page on which the qualifications of one person are shown (if x4equalificationgeneral is installed)
+	qualificationPageUid =
+
+	# page on which the research group page uid (if x4eresearchgroup is installed)
+	researchGroupPageUid =
+
+	# page on which the office hours of a person are displayed (if x4eofficehour is installed)
+	officeHourPageUid =
+
+	# Function for alumnis (if not set via checkbox)
+	alumniFuncUid =
+
+	# pages only to show when the logged in user looks at his own profile
+	onlyShowIfSessionEQUserUid =
+}

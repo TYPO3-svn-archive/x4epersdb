@@ -1,0 +1,156 @@
+<!-- ###listView### begin -->
+	###search###
+	<p>###pageBrowser###</p><br />
+	###noResultFound###
+	<!-- ###list### begin -->
+		 <table class="tablelist" border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody>
+			<!-- ###headRow### begin -->
+			<tr>
+				<!-- ###cell### -->
+					<th>###content###</th>
+				<!-- ###cell### -->
+			</tr>
+			<!-- ###headRow### end -->
+
+			<!-- ###rows### begin -->
+				<!-- ###row0### begin -->
+				<tr class="odd">
+					<!-- ###cell### -->
+						<td ###cellClass###>###content###</td>
+					<!-- ###cell### -->
+				</tr>
+				<!-- ###row0### end -->
+
+				<!-- ###row1### begin -->
+				<tr>
+					<!-- ###cell### -->
+						<td ###cellClass###>###content###</td>
+					<!-- ###cell### -->
+				</tr>
+				<!-- ###row1### end -->
+			<!-- ###rows### end -->
+		</table>
+	<!-- ###list### end -->
+<!-- ###listView### end -->
+
+<!-- ###listViewByFunction### begin -->
+	###search###<p>###alphabeticLink###</p>
+	###noResultFound###
+	<!-- ###jumpToFunctionBox### begin -->
+		<div class="tx_publics_pi1_jump"><ul style="margin-left:10px;"><!-- ###jumpToFunction### --><li><a href="###functionAnchor###">###functionTitle###</a></li><!-- ###jumpToFunction### --></ul></div>
+	<!-- ###jumpToFunctionBox### end -->
+	<!-- ###linkToFunctionBox### begin -->
+		<div class="tx_publics_pi1_jump"><ul style="margin-left:10px;"><!-- ###linkToFunction### --><li><a href="###functionLink###">###functionTitle###</a></li><!-- ###linkToFunction### --></ul></div>
+	<!-- ###linkToFunctionBox### end -->
+	<table class="tablelist" border="0" cellpadding="0" cellspacing="0" width="100%">
+		<colgroup>
+		   <col class="col1">
+		   <col class="col2">
+		   <col class="col3">
+		   <col class="col4">
+	  	</colgroup>
+	<!-- ###function### begin -->
+		
+		<tr><th class="function-tile" colspan="5"><a name="###categoryAnchor###"></a><h2>###functionTitle###</h2></th></tr>
+		<!-- ###list### begin -->
+
+				<!-- ###headRow### begin -->
+					<tr class="tableheader">
+					<!-- ###cell### -->
+						<th>###content###</th>
+					<!-- ###cell### -->
+					</tr>
+				<!-- ###headRow### end -->
+
+				<!-- ###rows### begin -->
+					<!-- ###row0### begin -->
+					<tr class="odd">
+						<!-- ###cell### -->
+							<td ###cellClass###>###content###</td>
+						<!-- ###cell### -->
+					</tr>
+					<!-- ###row0### end -->
+
+					<!-- ###row1### begin -->
+					<tr>
+						<!-- ###cell### -->
+							<td ###cellClass###>###content###</td>
+						<!-- ###cell### -->
+					</tr>
+					<!-- ###row1### end -->
+				<!-- ###rows### end -->
+
+		<!-- ###list### end -->
+	<!-- ###function### end -->
+	</table>
+<!-- ###listViewByFunction### end -->
+	
+<!-- ###listViewByDepartment### begin -->
+	###search###
+	###noResultFound###
+	
+	<!-- ###jumpToDepartmentBox### begin -->
+		<div class="tx_publics_pi1_jump"><ul style="margin-left:10px; margin-bottom:10px;"><!-- ###jumpToDepartment### --><li><a href="###departmentAnchor###">###departmentTitle###</a></li><!-- ###jumpToDepartment### --></ul></div>
+	<!-- ###jumpToDepartmentBox### end -->
+	
+	<table class="tablelist" border="0" cellpadding="0" cellspacing="0" width="100%">
+	<!-- ###department### begin -->
+	<tr><th colspan="5"><h1 class="departmentTitle"><a name="###depAnchor###"></a>###departmentTitle###</h1></th></tr>
+	<!-- ###listViewByFunction### begin -->
+		<!-- ###function### begin -->
+			<tr><th class="function-title" colspan="5"><h2>###functionTitle###</h2></th></tr>
+			<!-- ###list### begin -->
+				<!-- ###headRow### begin -->
+					<tr class="tableheader">
+					<!-- ###cell### -->
+						<th>###content###</th>
+					<!-- ###cell### -->
+					</tr>
+				<!-- ###headRow### end -->
+				<!-- ###rows### begin -->
+					<!-- ###row0### begin -->
+					<tr class="odd">
+						<!-- ###cell### -->
+							<td ###cellClass###>###content###</td>
+						<!-- ###cell### -->
+					</tr>
+					<!-- ###row0### end -->
+
+					<!-- ###row1### begin -->
+					<tr>
+						<!-- ###cell### -->
+							<td ###cellClass###>###content###</td>
+						<!-- ###cell### -->
+					</tr>
+					<!-- ###row1### end -->
+				<!-- ###rows### end -->
+			<!-- ###list### end -->
+		<!-- ###function### end -->
+	<!-- ###listViewByFunction### end -->
+	<tr><th class="function-title" colspan="5">&nbsp;</td></tr>
+	<!-- ###department### end -->
+	</table>
+<!-- ###listViewByDepartment### begin -->
+
+<!-- ###searchBox### begin -->
+<form action="###formAction###" method="post">
+<p>	<input type="hidden" name="no_cache" value="1" />
+	<input type="hidden" name="###prefixId###[pointer]" value="" />
+	<input type="text" name="###prefixId###[sword]" value="###searchWord###" />
+	<input type="submit" value="###submit###" /></p>
+</form>
+<!-- ###searchBox### end -->
+
+<!-- ###noResultFoundBox### begin -->
+	<p>###noResultFoundText###</p>
+<!-- ###noResultFoundBox### end -->
+
+<!-- ###alphabeticPageBrowser### begin -->
+	<!-- ###aPBElement### -->
+		###linkStart######start###-###end######linkEnd###&nbsp;&nbsp;
+	<!-- ###aPBElement### -->
+	<!-- ###aPBElementActive### -->
+		<b>###start###-###end###</b>&nbsp;&nbsp;
+	<!-- ###aPBElementActive### -->
+<!-- ###alphabeticPageBrowser### end -->
