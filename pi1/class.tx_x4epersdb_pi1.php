@@ -780,7 +780,11 @@ class tx_x4epersdb_pi1 extends x4epibase {
 		$this->internal['results_at_a_time'] = 1000;
 
 			// generate additional where statement
-		$addWhere .= ' AND alumni = 1';
+		if(intval($this->conf['alumniFuncUid']) > 0){
+			$addWhere .= ' AND FIND_IN_SET('.$this->conf['alumniFuncUid'].',function)';
+		} else {
+			$addWhere .= ' AND alumni = 1';
+		}
 
 				// Get number of records:
 		$this->conf['pidList'] = $this->conf['feUsers']['pidList'];

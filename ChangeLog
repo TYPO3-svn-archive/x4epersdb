@@ -3,6 +3,9 @@
 	* Added xclass lines where necessary
 	* Completed phpdoc
 
+2010-08-24 <manuel@4eyes.ch>
+	* listAlumnis() now discriminates $addWhere for the case $this->conf['alumniFuncUid'] is set
+
 10-08-09 manuel@4eyes.ch
 	- introduced new ts-constant alumniFuncUid which takes the uid of the function record supposed to be the alumnis
 
