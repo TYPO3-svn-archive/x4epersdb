@@ -21,8 +21,8 @@ $LOCAL_LANG = Array (
 		'field_orderList' => 'Fields to display',
 		'allPublicationsSiteUid' => 'Page with complete list of publications',
 		'alphabeticPageUid' => 'Page with alphabetic list',
-		'departmentUids' => 'Departemente (leer = alle)',
-		'personNotAvailablePageUid' => 'Seite fuer nicht (mehr) existierende Personen',
+		'departmentUids' => 'Departments (empty = all)',
+		'personNotAvailablePageUid' => 'Page for no longer existing persons',
 		'templateFile' => 'Template file'
 
 	),
@@ -41,6 +41,8 @@ $LOCAL_LANG = Array (
 		'field_orderList' => 'Anzuzeigende Felder',
 		'allPublicationsSiteUid' => 'Seite mit allen Publikationen einer Person',
 		'alphabeticPageUid' => 'Seite mit alphbetischer Liste',
+		'departmentUids' => 'Departemente (leer = alle)',
+		'personNotAvailablePageUid' => 'Seite fuer nicht (mehr) existierende Personen',
 		'templateFile' => 'Template'
 	)
 );

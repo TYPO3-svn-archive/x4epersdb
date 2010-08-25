@@ -1108,8 +1108,8 @@ class tx_x4epersdb_pi1 extends x4epibase {
 
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epersdb/class.tx_x4epersdb_tcemainprocdm.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epersdb/class.tx_x4epersdb_tcemainprocdm.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epersdb/pi1/class.tx_x4epersdb_pi1.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epersdb/pi1/class.tx_x4epersdb_pi1.php']);
 }
 
 ?>

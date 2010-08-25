@@ -22,7 +22,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /**
- * Plugin 'Person Info' for the 'listfeuser_uni' extension.
+ * Plugin 'Person Info' for the 'x4epersdb' extension.
  *
  * @author	Markus Stauffiger <markus@4eyes.ch>
  */
