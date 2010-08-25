@@ -288,7 +288,7 @@ class tx_x4epersdb_pi1 extends x4epibase {
 
 
 				// Get latest publications (if any)
-			$subQ = $GLOBALS['TYPO3_DB']->SELECTquery('uid_local',$this->publicationAuthorMM,'uid_foreign='.$this->internal['currentRow']['uid']);
+			$subQ = $GLOBALS['TYPO3_DB']->SELECTquery('uid_local',$this->publicationAuthorMM,'uid_foreign='.intval($this->internal['currentRow']['uid']));
 			$where = 'uid IN ('.$subQ.')'.$this->cObj->enableFields($this->publicationTable);
 			$count = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('count(*)',$this->publicationTable,$where);
 				// if there are no publications or publications are not supposed to be shown
@@ -893,7 +893,7 @@ class tx_x4epersdb_pi1 extends x4epibase {
 				$foreignTable = $TCA[$this->table]['columns'][$fN]['config']['foreign_table'];
 				$foreignMMTable = $TCA[$this->table]['columns'][$fN]['config']['MM'];
 				if ($this->internal['currentRow'][$fN] != '') {
-					$subQ = $GLOBALS['TYPO3_DB']->SELECTquery('uid_foreign',$foreignMMTable,'uid_local = '.$this->internal['currentRow']['uid']);
+					$subQ = $GLOBALS['TYPO3_DB']->SELECTquery('uid_foreign',$foreignMMTable,'uid_local = '.intval($this->internal['currentRow']['uid']));
 					$f = $GLOBALS['TYPO3_DB']->exec_SELECTquery('title',$foreignTable,'uid IN ('.$subQ.')'.$this->cObj->enableFields($foreignTable));
 					$funcs = array();
 					while($fu = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($f)) {
