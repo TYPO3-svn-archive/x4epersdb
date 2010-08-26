@@ -1,12 +1,12 @@
-### see also x4epibase/ext_typoscript_setup for more configuration possibilities
+### see also x4epibase/ext_typoscript_setup.txt for more configuration possibilities
 
 ##########################
 # Configuration for the list and detail views
 ##########################
 plugin.tx_x4epersdb_pi1 {
-	# page (sysfolder) containing the persons (even though it says fesers)
+	# page (sysfolder) containing the persons (even though it says feusers)
 	feUserPageUids = {$persDB.pidList}
-	# page (sysfolder) containing the persons (even though it says fesers)
+	# page (sysfolder) containing the persons (even though it says feusers)
 	feUsers.pidList = {$persDB.pidList}
 	# page uid on which all the publications of one person are displayed (if x4epublication is installed)
 	allPublicationsSiteUid = {$persDB.publicationPageUid}
@@ -72,6 +72,7 @@ plugin.tx_x4epersdb_pi1 {
 		showRange = 1
 		showFirstLast = 1
 	}
+	# Skip htmlentities on this fields, you may use all
 	skipHtmlEntitiesFields = all
 	# Number of chars per step (ex. 4 => A-D, E-H)
 	alphabeticPageBrowserStepSize = 4

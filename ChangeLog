@@ -1,3 +1,8 @@
+2010-08-26 Markus Stauffiger <markus@4eyes.ch>
+	* Cleaned up templates (removed unnecessary ones)
+	* First version of manual
+	* Some minor typoscript constants/setup updates
+
 2010-08-25 Michel Georgy <michel@4eyes.ch>
 	* Fixed xclass definition in pi1
 	* Fixed several spelling errors in different pi's

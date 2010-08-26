@@ -1,2 +1,2 @@
-
-Feel free to add some documentation or simply add a link to the online manual.
+See doc/manual.swx and http://forge.typo3.org/projects/extension-x4epersdb for
+more information
