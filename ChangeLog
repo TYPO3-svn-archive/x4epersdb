@@ -1,4 +1,8 @@
 2010-08-27 Markus Stauffiger <markus@4eyes.ch>
+	* Fixed some PHP 5.3 problem in helper class
+	* Updated documentation now containing installation tutorials
+
+2010-08-27 Markus Stauffiger <markus@4eyes.ch>
 	* Updated documentation
 	* A little code cleanup
 

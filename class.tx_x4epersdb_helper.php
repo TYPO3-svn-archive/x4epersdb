@@ -12,7 +12,7 @@ class tx_x4epersdb_helper {
 		if (is_array($TCA[$params['config']['table']]['columns']))	{
 			foreach($TCA[$params['config']['table']]['columns'] as $key => $config)	{
 				if ($config['label'] && !t3lib_div::inList('password',$key))	{
-					$label = t3lib_div::fixed_lgd(ereg_replace(':$','',$GLOBALS['LANG']->sL($config['label'])),30).' ('.$key.')';
+					$label = $GLOBALS['LANG']->sL($config['label']).' ('.$key.')';
 					$params['items'][]=Array($label, $key);
 				}
 			}
