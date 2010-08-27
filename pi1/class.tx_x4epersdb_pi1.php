@@ -95,13 +95,13 @@ class tx_x4epersdb_pi1 extends x4epibase {
 	var $debug = false;
 
 	/**
-         * Overriding the person and publicationssettings from the member variables
-         * otherwise just calling the parent init function
-         *
-         * @param   string  $content
-         * @param   array   $conf   Typoscript configuration
-         *
-         * @return void
+	 * Overriding the person and publicationssettings from the member variables
+	 * otherwise just calling the parent init function
+	 *
+	 * @param   string  $content
+	 * @param   array   $conf   Typoscript configuration
+	 *
+	 * @return void
 	 */
 	function init($content,$conf) {
 		if ($this->conf['publDB.']['extKey'] != '') {
@@ -115,12 +115,12 @@ class tx_x4epersdb_pi1 extends x4epibase {
 
 	/**
 	 * Setting various configuration values and handles the delivery of
-         * the correct view
-         *
-         * @param   string  $content
-         * @param   array   $conf   Typoscript configuration
-         *
-         * @return  string  HTML-Output of the plugin
+	 * the correct view
+	 *
+	 * @param   string  $content
+	 * @param   array   $conf   Typoscript configuration
+	 *
+	 * @return  string  HTML-Output of the plugin
 	 */
 	function main($content,$conf)	{
 		$this->conf = $conf;
@@ -132,10 +132,7 @@ class tx_x4epersdb_pi1 extends x4epibase {
 		$this->internal['currentTable'] = $this->table;
 		$this->manualFieldOrder = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'field_manualOrder') ? TRUE : FALSE;
 		$this->manualFieldOrder_details = t3lib_div::trimExplode(',',$this->pi_getFFvalue($this->cObj->data['pi_flexform'],'field_orderDetails'),1);
-		
-		//michel@4eyes.ch 2010
 		$this->manualFieldOrder_list = t3lib_div::trimExplode(',',$this->getTSFFvar('field_orderList'),1);
-		//end michel@4eyes.ch 2010
 		
 		if (strstr($this->cObj->currentRecord,'tt_content'))	{
 			$this->conf['pidList'] = $this->cObj->data['pages'];
@@ -208,10 +205,10 @@ class tx_x4epersdb_pi1 extends x4epibase {
 
 	/**
 	 * Displaying a single person's record
-         * 
-         * @param   string  $side   Defining which subpart to load
-         *
-         * @return  string  HTML-Ouput
+	 *
+	 * @param   string  $side   Defining which subpart to load
+	 *
+	 * @return  string  HTML-Ouput
 	 */
 	function singleView($side) {
 		global $TCA;
@@ -683,8 +680,7 @@ class tx_x4epersdb_pi1 extends x4epibase {
 
 			// Get number of records:
 			$this->conf['pidList'] = $this->conf['feUsers']['pidList'];
-			$query = $this->pi_list_query($this->table,1,$addWhere.$subWhere.$addFuncWhere);
-			$res = $GLOBALS['TYPO3_DB']->sql_query($query);
+			$query = $this->pi_exec_query($this->table,1,$addWhere.$subWhere.$addFuncWhere);
 
 			list($this->internal['res_count']) = $GLOBALS['TYPO3_DB']->sql_fetch_row($res);
 			
@@ -701,9 +697,7 @@ class tx_x4epersdb_pi1 extends x4epibase {
 					if ($this->conf['listViewByFunction.']['hideListByDefault']==1) {
 						
 					 	if ((($funcUid > 0) && ($funcUid == $f['uid'])) || ($this->piVars['sword'] != '')) {
-					 		$query = $this->pi_list_query($this->table,0,$addWhere.$subWhere.$addFuncWhere);
-					 		
-							$res = $GLOBALS['TYPO3_DB']->sql_query($query);
+					 		$query = $this->pi_exec_query($this->table,0,$addWhere.$subWhere.$addFuncWhere);
 					 		$sub['###list###'] = $this->pi_list_makelist($res);
 					 	} else {
 					 		$sub['###list###'] = '';
@@ -715,10 +709,8 @@ class tx_x4epersdb_pi1 extends x4epibase {
 						}
 					} else {
 						$addWhere .= ' AND sys_language_uid = 0';
-						$query = $this->pi_list_query($this->table,0,$addWhere.$subWhere.$addFuncWhere);
-						
-						$res = $GLOBALS['TYPO3_DB']->sql_query($query);
-		
+						$query = $this->pi_exec_query($this->table,0,$addWhere.$subWhere.$addFuncWhere);
+
 							// Adds the whole list table
 						$sub['###list###'] = $this->pi_list_makelist($res);
 					}
@@ -912,9 +904,6 @@ class tx_x4epersdb_pi1 extends x4epibase {
 			break;
 			case 'lastname':
 				if (($this->piVars['showUid'] != $this->internal['currentRow']['uid']) || ($this->pi_getFFvalue($this->cObj->data['pi_flexform'], 'modeSelection') < 2)) {
-					//return $this->pi_list_linkSingle(htmlspecialchars($this->internal['currentRow'][$fN]),$this->internal['currentRow']['uid'],1,array(),false,$this->conf['listView.']['detailPageUid']);
-					//$params['showUid'] = $this->internal['currentRow']['uid'];
-					//return $this->pi_linkTP_keepPIvars(htmlspecialchars($this->internal['currentRow'][$fN]),$params,1);
 					$params['showUid']= $this->internal['currentRow']['uid'];
 					$params['pointer'] = '';
 					$params['sword'] = '';

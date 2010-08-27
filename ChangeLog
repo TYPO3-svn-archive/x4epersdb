@@ -1,3 +1,7 @@
+2010-08-27 Markus Stauffiger <markus@4eyes.ch>
+	* Updated documentation
+	* A little code cleanup
+
 2010-08-26 Markus Stauffiger <markus@4eyes.ch>
 	* Cleaned up templates (removed unnecessary ones)
 	* First version of manual
