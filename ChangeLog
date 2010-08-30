@@ -1,36 +1,39 @@
-2010-08-27 Markus Stauffiger <markus@4eyes.ch>
+2010-08-30 Markus Stauffiger <markus-at-4eyes.ch>
+	* Updated documentation
+
+2010-08-27 Markus Stauffiger <markus-at-4eyes.ch>
 	* Fixed some PHP 5.3 problem in helper class
 	* Updated documentation now containing installation tutorials
 
-2010-08-27 Markus Stauffiger <markus@4eyes.ch>
+2010-08-27 Markus Stauffiger <markus-at-4eyes.ch>
 	* Updated documentation
 	* A little code cleanup
 
-2010-08-26 Markus Stauffiger <markus@4eyes.ch>
+2010-08-26 Markus Stauffiger <markus-at-4eyes.ch>
 	* Cleaned up templates (removed unnecessary ones)
 	* First version of manual
 	* Some minor typoscript constants/setup updates
 
-2010-08-25 Michel Georgy <michel@4eyes.ch>
+2010-08-25 Michel Georgy <michel-at-4eyes.ch>
 	* Fixed xclass definition in pi1
 	* Fixed several spelling errors in different pi's
 	* Fixed flexform definition's
 
-2010-08-24 Markus Stauffiger <markus@4eyes.ch>
+2010-08-24 Markus Stauffiger <markus-at-4eyes.ch>
 	* Cleaned up the classes
 	* Added xclass lines where necessary
 	* Completed phpdoc
 
-2010-08-24 <manuel@4eyes.ch>
+2010-08-24 <manuel-at-4eyes.ch>
 	* listAlumnis() now discriminates $addWhere for the case $this->conf['alumniFuncUid'] is set
 
-10-08-09 manuel@4eyes.ch
+10-08-09 manuel-at-4eyes.ch
 	- introduced new ts-constant alumniFuncUid which takes the uid of the function record supposed to be the alumnis
 
 10-07-09
 	- Fixed a problem with the usergroup sync in the hook
 
-10-07-09 alessandro@4eyes.ch
+10-07-09 alessandro-at-4eyes.ch
 	- pi1 erweitert:
 		Unterstützt nun auch darstellung von Mitglieder nach Funktion gruppiert (x4epersdb->pi3).
 
@@ -49,6 +52,6 @@
 
 (add new changes on top of this file)
 
-05-09-15 Markus Stauffiger  <markus@4eyes.ch>
+05-09-15 Markus Stauffiger  <markus-at-4eyes.ch>
 
 	* Initial release
