@@ -308,7 +308,6 @@ class tx_x4epersdb_pi1 extends x4epibase {
 			}
 			unset($subQ,$where,$count);
 			$this->addPersonToPageTitle($data);
-
 		}
 		if (($side=='left') && ($this->publicationScript == '' )) {
 			$this->addPersonToPageTitle($data);

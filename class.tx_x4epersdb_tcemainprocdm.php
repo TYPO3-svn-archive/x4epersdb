@@ -85,50 +85,58 @@ class tx_x4epersdb_tcemainprocdm {
 	 */
     function processDatamap_postProcessFieldArray ($status, $table, $id, &$fieldArray, &$parent) {
 
-		$pid = $this->getPopViewId($fieldArray);
-		// only act if users are created in specific sysfolder:
-		if ($table == $this->personTable) {
-			switch($status) {
-				case 'new':
-					$this->createFEUser($fieldArray);
-					$this->checkAlias($fieldArray,$id,$status);
-				    $this->createPages($fieldArray);
-					//$this->createMountoints($fieldArray);
-					$this->createCalendar($fieldArray);
-					$this->syncUserGroup($fieldArray,'new',$id);
-				break;
-				case 'update':
-					$tmp = get_object_vars($this);
-					$this->checkAlias($fieldArray,$id,$status);
-					if (isset($tmp['datamap'][$this->personTable][$id]['personal_page'])) {
-						$personalFolder = $tmp['datamap'][$this->personTable][$id]['personal_page'];
-					} else {
-						$t = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('personal_page',$this->personTable,'uid ='.$id);
-						$personalFolder = $t[0]['personal_page'];
-						unset($t);
+		if (($table == $this->personTable) || ($table == 'fe_users')) {
+			$pid = $this->getPopViewId($fieldArray);
+
+			// check if hooks are enabled
+			$pageTSconf = t3lib_BEfunc::getPagesTSconfig($pid);
+			$pageTSconf = $pageTSconf['plugin.']['x4epersdb.'];
+			if ($pageTSconf['enableHooks'] == 1) {
+				// only act if users are created in specific sysfolder:
+				if ($table == $this->personTable) {
+					switch($status) {
+						case 'new':
+							$this->createFEUser($fieldArray);
+							$this->checkAlias($fieldArray,$id,$status);
+							$this->createPages($fieldArray);
+							//$this->createMountoints($fieldArray);
+							$this->createCalendar($fieldArray);
+							$this->syncUserGroup($fieldArray,'new',$id);
+						break;
+						case 'update':
+							$tmp = get_object_vars($this);
+							$this->checkAlias($fieldArray,$id,$status);
+							if (isset($tmp['datamap'][$this->personTable][$id]['personal_page'])) {
+								$personalFolder = $tmp['datamap'][$this->personTable][$id]['personal_page'];
+							} else {
+								$t = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('personal_page',$this->personTable,'uid ='.$id);
+								$personalFolder = $t[0]['personal_page'];
+								unset($t);
+							}
+							$this->updatePersonalFolder($fieldArray,$id,$table);
+							$this->updatePassword($fieldArray,$id);
+							$this->syncUsernameAndEmail($fieldArray,$id,$table);
+							$be_users = $tmp['datamap'][$this->personTable][$id]['beuser'];
+							//$this->removeMountpoints($id,$personalFolder);
+							//$this->createMountoints($fieldArray,$id,$be_users,$personalFolder);
+							$this->syncUserGroup($fieldArray,'update',$id);
+						break;
+						default:
+						break;
 					}
-					$this->updatePersonalFolder($fieldArray,$id,$table);
-					$this->updatePassword($fieldArray,$id);
-					$this->syncUsernameAndEmail($fieldArray,$id,$table);
-					$be_users = $tmp['datamap'][$this->personTable][$id]['beuser'];
-					//$this->removeMountpoints($id,$personalFolder);
-					//$this->createMountoints($fieldArray,$id,$be_users,$personalFolder);
-					$this->syncUserGroup($fieldArray,'update',$id);
-				break;
-				default:
-				break;
-			}
-			$tce = t3lib_div::makeInstance('t3lib_TCEmain');
-		}
-		if($table == 'fe_users'){
-			switch($status) {
-				case 'update':
-					$this->updatePersonalFolder($fieldArray,$id,$table);
-					$this->syncUsernameAndEmail($fieldArray,$id,$table);
-					$this->syncUserGroup($fieldArray,'update',$id,$table);
-				break;
-				default:
-				break;
+				}
+			
+				if($table == 'fe_users'){
+					switch($status) {
+						case 'update':
+							$this->updatePersonalFolder($fieldArray,$id,$table);
+							$this->syncUsernameAndEmail($fieldArray,$id,$table);
+							$this->syncUserGroup($fieldArray,'update',$id,$table);
+						break;
+						default:
+						break;
+					}
+				}
 			}
 		}
     }
