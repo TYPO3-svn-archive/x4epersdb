@@ -1,4 +1,11 @@
 2010-08-30 Markus Stauffiger <markus-at-4eyes.ch>
+	* Fixed a bugs which occured during cleanup
+	* Handling of used extensions if they are installed
+	* Fixed several issues when extension is installed soley
+	* sys language filter in pi3/flexform
+	* Updated documentation
+
+2010-08-30 Markus Stauffiger <markus-at-4eyes.ch>
 	* Updated documentation
 
 2010-08-27 Markus Stauffiger <markus-at-4eyes.ch>

@@ -169,5 +169,6 @@ if (TYPO3_MODE=='BE')	{
 	$TBE_MODULES_EXT[ 'xMOD_db_new_content_el' ][ 'addElClasses' ][ 'tx_x4epersdb_pi1_wizicon' ] = t3lib_extMgm::extPath( $_EXTKEY ).'pi1/class.tx_x4epersdb_pi1_wizicon.php';
 	require_once(t3lib_extMgm::extPath($_EXTKEY).'class.tx_'.$_EXTKEY.'_helper.php');
 	t3lib_extMgm::addModule("web","txx4epersdbM1","",t3lib_extMgm::extPath($_EXTKEY)."mod1/");
+	require_once(t3lib_extMgm::extPath("x4epersdb")."class.tx_x4epersdb_tx_x4epersdb_tca_proc.php");
 }
 ?>

@@ -344,17 +344,18 @@ class tx_x4epersdb_pi2 extends x4epibase {
 	/**
 	 * Checks whether user has projects, only relevant if x4eprojectsgeneral is installed
 	 * 
-	 * @todo Check if x4eprojectsgeneral is installed, otherwise return false
-	 *
 	 * @param 	array	$user	User record
 	 * @return 	boolean
 	 */
 	function hasProjects(&$user) {
-		$q = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('count(*)','tx_x4euniprojectsgeneral_list','1 AND (FIND_IN_SET('.$user['uid'].',tx_x4euniprojectsgeneral_list.projectmanagement) OR FIND_IN_SET('.$user['uid'].',tx_x4euniprojectsgeneral_list.personsinvolved))'.$this->cObj->enableFields('tx_x4euniprojectsgeneral_list'));
-		if ($q[0]['count(*)'] > 0) {
-			return true;
+		$ret = false;
+		if (t3lib_extMgm::isLoaded('x4euniprojectsgeneral')) {
+			$q = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('count(*)','tx_x4euniprojectsgeneral_list','1 AND (FIND_IN_SET('.$user['uid'].',tx_x4euniprojectsgeneral_list.projectmanagement) OR FIND_IN_SET('.$user['uid'].',tx_x4euniprojectsgeneral_list.personsinvolved))'.$this->cObj->enableFields('tx_x4euniprojectsgeneral_list'));
+			if ($q[0]['count(*)'] > 0) {
+				$ret = true;
+			}
 		}
-		return false;
+		return $ret;
 	}
 
 	/**

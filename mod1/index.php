@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2005  ()
+ *  (c) 2010 4eyes GmbH  ()
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -24,7 +24,7 @@
 /**
  * Module 'Person Import' for the 'x4epersdb' extension.
  *
- * @author     <>
+ * @author 4eyes    <>
  */
 
 ini_set('auto_detect_line_endings',true);

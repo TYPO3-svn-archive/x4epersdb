@@ -925,7 +925,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 	'types' => Array (
 		'0' => Array('showitem' => 'sys_language_uid;;;;1-1-1,l18n_parent,l18n_diffsource,hidden,alumni, title, firstname, lastname, alias, title_after, email,function,function_suffix,fe_groups,
 								--div--;Bild/Profil,image,profile;;;richtext[paste|bold|italic|underline|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[flag=rte_enabled|mode=ts],membership;;;richtext[paste|bold|italic|underline|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[flag=rte_enabled|mode=ts],
-								--div--;Büro,buildings,institutes,departments,floor,room,office_address,office_roomnumber,office_zip,office_location,office_country,office_phone,office_phone2,office_mobile_phone,office_fax,email2,
+								--div--;Office,buildings,institutes,departments,floor,room,office_address,office_roomnumber,office_zip,office_location,office_country,office_phone,office_phone2,office_mobile_phone,office_fax,email2,
 								--div--;Zweitadresse / Privat,address,zip,city,country,phone,phone2,mobile,fax,url,
 								--div--;Spezial,username,password,lecture_link,publadmin, qualiadmin, showpublics,personal_page,beuser,feuser_id,company,static_info_country,tx_x4emutation_department,tx_x4emutation_affiliation,tx_x4emutation_speciality,rssUrl,
 								--div--;Zentrale Forschungsdatenbank,dni,mcss_id,main_entry')

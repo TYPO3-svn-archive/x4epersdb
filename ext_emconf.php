@@ -28,7 +28,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'clearcacheonload' => 0,
 	'lockType' => '',
 	'author' => 'Markus Stauffiger',
-	'author_email' => 'markus@4eyes.ch',
+	'author_email' => 'markus-at-4eyes.ch',
 	'author_company' => '4eyes GmbH',
 	'CGLcompliance' => '',
 	'CGLcompliance_note' => '',
@@ -36,6 +36,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'depends' => array(
 			'cms' => '',
 			'x4epibase' => '',
+			'static_info_tables' => ''
 		),
 		'conflicts' => array(
 		),

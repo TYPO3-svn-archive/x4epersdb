@@ -24,7 +24,7 @@
 /**
  * Plugin '4eyes Person database' for the 'x4epersdb' extension.
  *
- * @author	Markus Stauffiger <markus@4eyes.ch>
+ * @author	Markus Stauffiger <markus-at-4eyes.ch>
  */
 
 require_once('typo3conf/ext/x4epibase/class.x4epibase.php');
@@ -34,64 +34,64 @@ class tx_x4epersdb_pi1 extends x4epibase {
 	var $extKey = 'x4epersdb';	// The extension key.
 	var $pi_checkCHash = TRUE;
 
-        /**
-         * Name of the table containing the persons
-         * @var string
-         */
+	/**
+	 * Name of the table containing the persons
+	 * @var string
+	 */
 	var $table = 'tx_x4epersdb_person';
 
-        /**
-         * Name of the table containing the functions
-         * @var string
-         */
+	/**
+	 * Name of the table containing the functions
+	 * @var string
+	 */
 	var $functionTable = 'tx_x4epersdb_function';
 
-        /**
-         * Name of the table containing the departments
-         *
-         * @var string
-         */
+	/**
+	 * Name of the table containing the departments
+	 *
+	 * @var string
+	 */
 	var $departmentTable = 'tx_x4epersdb_department';
         var $affiliationTable =	'tx_x4epersdb_department';
 
-        /**
-         * Name of the table containing the mm relationships between
-         * persons (uid_local) and departments (uid_foreign)
-         *
-         * @var string
-         */
+	/**
+	 * Name of the table containing the mm relationships between
+	 * persons (uid_local) and departments (uid_foreign)
+	 *
+	 * @var string
+	 */
 	var $departmentTableMM = 'tx_x4epersdb_person_department_mm';
 
 	/**
-         * PHP Script which handles the publications
-         * @var sting
-         */
+	 * PHP Script which handles the publications
+	 * @var sting
+	 */
 	var $publicationScript = 'typo3conf/ext/x4epublication/pi1/class.tx_x4epublication_pi1.php';
 
-        /**
-         * Name of the publication plugin
-         * @var string
-         */
+	/**
+	 * Name of the publication plugin
+	 * @var string
+	 */
 	var $publicationPrefixId = 'tx_x4epublication_pi1';
 
-        /**
-         * Name of the table containing the publications
-         * @var string
-         */
+	/**
+	 * Name of the table containing the publications
+	 * @var string
+	 */
 	var $publicationTable = 'tx_x4epublication_publication';
 
-        /**
-         * Name of the table containing the mm relationships between
-         * persons (authors) and publications
-         * @var <type>
-         */
+	/**
+	 * Name of the table containing the mm relationships between
+	 * persons (authors) and publications
+	 * @var <type>
+	 */
 	var $publicationAuthorMM = 'tx_x4epublication_publication_persons_auth_mm';
 
-        /**
-         * Enables debug functionality (if implemented :))
-         *
-         * @var boolean
-         */
+	/**
+	 * Enables debug functionality (if implemented :))
+	 *
+	 * @var boolean
+	 */
 	var $debug = false;
 
 	/**
@@ -280,8 +280,9 @@ class tx_x4epersdb_pi1 extends x4epibase {
 		$sub['###officeBox###'] = $this->getOffice($data);
 		$mArr = array();
 
+		$sub['###lastestPublications_box###'] = '';
 			// only add latest publications if in "left"-mode
-		if (($side == 'left') && ($this->publicationScript != '')) {
+		if (($side == 'left') && ($this->publicationScript != '') && t3lib_extMgm::isLoaded('x4epublication')) {
 
 
 				// Get latest publications (if any)
@@ -304,8 +305,6 @@ class tx_x4epersdb_pi1 extends x4epibase {
 
 				$sub['###lastestPublications_box###'] = $this->cObj->substituteMarkerArray($tmpTmpl,$tmpMar);
 				unset($tmpTmpl,$tmpMar);
-			} else {
-				$sub['###lastestPublications_box###'] = '';
 			}
 			unset($subQ,$where,$count);
 			$this->addPersonToPageTitle($data);
@@ -328,14 +327,18 @@ class tx_x4epersdb_pi1 extends x4epibase {
 	 * @return	string
 	 */
 	function getResearchgroupNames($persID){
-		// idea: create instance of x4eresearch_pi1 and run renderCategory
-		require_once('typo3conf/ext/x4eresearch/pi1/class.tx_x4eresearch_pi1.php');
-		$research = t3lib_div::makeInstance('tx_x4eresearch_pi1');
-		$research->cObj = t3lib_div::makeInstance('tslib_cObj');
-		$research->main('',$research->conf);
-		$research->overrideMethod['renderCategory']=false;
-		$stuff=$research->listRelatedResearchgroups($persID);
-		return($stuff);
+		if (t3lib_extMgm::isLoaded('x4eresearch')) {
+			// idea: create instance of x4eresearch_pi1 and run renderCategory
+			require_once('typo3conf/ext/x4eresearch/pi1/class.tx_x4eresearch_pi1.php');
+			$research = t3lib_div::makeInstance('tx_x4eresearch_pi1');
+			$research->cObj = t3lib_div::makeInstance('tslib_cObj');
+			$research->main('',$research->conf);
+			$research->overrideMethod['renderCategory']=false;
+			$stuff=$research->listRelatedResearchgroups($persID);
+			return($stuff);
+		} else {
+			return '';
+		}
 	}
 
 	/**
@@ -670,7 +673,6 @@ class tx_x4epersdb_pi1 extends x4epibase {
 		$funcUid = intval($this->piVars['functionUid']);
 		
 		if(isset($this->conf['showOnlyWithEvents'])){
-			//$addWhere .= ' AND uid IN (SELECT owner FROM tx_x4eofficehour_events GROUP BY owner)';
 			$subWhere = ' AND uid IN (' . $this->conf['feUserUids'].')';
 		}
 			
@@ -680,7 +682,7 @@ class tx_x4epersdb_pi1 extends x4epibase {
 
 			// Get number of records:
 			$this->conf['pidList'] = $this->conf['feUsers']['pidList'];
-			$query = $this->pi_exec_query($this->table,1,$addWhere.$subWhere.$addFuncWhere);
+			$res = $this->pi_exec_query($this->table,1,$addWhere.$subWhere.$addFuncWhere);
 
 			list($this->internal['res_count']) = $GLOBALS['TYPO3_DB']->sql_fetch_row($res);
 			
@@ -697,7 +699,7 @@ class tx_x4epersdb_pi1 extends x4epibase {
 					if ($this->conf['listViewByFunction.']['hideListByDefault']==1) {
 						
 					 	if ((($funcUid > 0) && ($funcUid == $f['uid'])) || ($this->piVars['sword'] != '')) {
-					 		$query = $this->pi_exec_query($this->table,0,$addWhere.$subWhere.$addFuncWhere);
+					 		$res = $this->pi_exec_query($this->table,0,$addWhere.$subWhere.$addFuncWhere);
 					 		$sub['###list###'] = $this->pi_list_makelist($res);
 					 	} else {
 					 		$sub['###list###'] = '';
@@ -709,7 +711,7 @@ class tx_x4epersdb_pi1 extends x4epibase {
 						}
 					} else {
 						$addWhere .= ' AND sys_language_uid = 0';
-						$query = $this->pi_exec_query($this->table,0,$addWhere.$subWhere.$addFuncWhere);
+						$res = $this->pi_exec_query($this->table,0,$addWhere.$subWhere.$addFuncWhere);
 
 							// Adds the whole list table
 						$sub['###list###'] = $this->pi_list_makelist($res);

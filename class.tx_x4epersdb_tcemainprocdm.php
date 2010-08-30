@@ -1,10 +1,33 @@
 <?
-/*
+/***************************************************************
+*  Copyright notice
+*
+*  (c) 2005 Markus Stauffiger (markus@4eyes.ch)
+*  All rights reserved
+*
+*  This script is part of the TYPO3 project. The TYPO3 project is
+*  free software; you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+*
+*  The GNU General Public License can be found at
+*  http://www.gnu.org/copyleft/gpl.html.
+*
+*  This script is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  This copyright notice MUST APPEAR in all copies of the script!
+***************************************************************/
+
+/**
  * This hook generates a personal sysfolder inside the actual sysfolder
  * if users adds a fe_user.
  *
  * Additionally the "personal_page" field will be set automatically
-*/
+ */
 
 class tx_x4epersdb_tcemainprocdm {
 	/**
@@ -96,9 +119,6 @@ class tx_x4epersdb_tcemainprocdm {
 				break;
 			}
 			$tce = t3lib_div::makeInstance('t3lib_TCEmain');
-			// clear cache of list page (HARDCODED)
-			//$tce->clear_cacheCMD(588);
-			//$tce->clear_cacheCMD(656);
 		}
 		if($table == 'fe_users'){
 			switch($status) {
@@ -660,7 +680,7 @@ class tx_x4epersdb_tcemainprocdm {
 	}
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epersdb/pi1/class.tx_x4epersdb_pi1.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epersdb/pi1/class.tx_x4epersdb_pi1.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epersdb/class.tx_x4epersdb_tcemainprocdm.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/x4epersdb/class.tx_x4epersdb_tcemainprocdm.php']);
 }
 ?>
