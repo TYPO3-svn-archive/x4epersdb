@@ -127,6 +127,9 @@ class tx_x4epersdb_pi1 extends x4epibase {
 		$this->init($content,$conf);
 		$this->pi_initPIflexForm();
 		$this->pi_loadLL();
+
+		// TODO
+		// clean up and correct source for options -> typoscript!
 		$this->internal['searchFieldList']=$this->pi_getFFvalue($this->cObj->data['pi_flexform'],'field_orderList');
 		$this->internal['orderByList']=$this->internal['searchFieldList'];
 		$this->internal['currentTable'] = $this->table;
@@ -839,7 +842,6 @@ class tx_x4epersdb_pi1 extends x4epibase {
 	function getFieldContent($fN)	{
 		global $TCA;
 
-			// feature added by Ingmar Schlecht <ingmar@typo3.org>
 		if($this->conf[$this->viewMode.'.']['customProcessing.'][$fN]) {
 				// keep old data array for later restorage
 			$temp = $this->cObj->data;

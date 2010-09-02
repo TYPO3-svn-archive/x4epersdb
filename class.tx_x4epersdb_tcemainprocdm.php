@@ -98,7 +98,9 @@ class tx_x4epersdb_tcemainprocdm {
 						case 'new':
 							$this->createFEUser($fieldArray);
 							$this->checkAlias($fieldArray,$id,$status);
-							$this->createPages($fieldArray);
+							if ($pageTSconf['enableCreatePages'] == 1) {
+								$this->createPages($fieldArray);
+							}
 							//$this->createMountoints($fieldArray);
 							$this->createCalendar($fieldArray);
 							$this->syncUserGroup($fieldArray,'new',$id);
@@ -293,7 +295,12 @@ class tx_x4epersdb_tcemainprocdm {
 				'usergroup' => $this->getDefaultUserGroup()
 			);
 				// change the pid of the fe-users to the selected folder
-			if (isset($TYPO3_CONF_VARS['EXTCONF']['x4epersdb']['feUserPid'][$pid])) {
+
+			$pageTSconf = t3lib_BEfunc::getPagesTSconfig($pid);
+			$pageTSconf = $pageTSconf['plugin.']['x4epersdb.'];
+			if ($pageTSconf['defaultFeUserPid']) {
+				$data['fe_users']['NEW001']['pid'] = intval($pageTSconf['defaultFeUserPid']);
+			} else if (isset($TYPO3_CONF_VARS['EXTCONF']['x4epersdb']['feUserPid'][$pid])) {
 				$data['fe_users']['NEW001']['pid'] = intval($TYPO3_CONF_VARS['EXTCONF']['x4epersdb']['feUserPid'][$pid]);
 			}
 
@@ -384,7 +391,12 @@ class tx_x4epersdb_tcemainprocdm {
 
    		$pid = $this->getPopViewId($fieldArray);
 
-   		if (isset($TYPO3_CONF_VARS['EXTCONF']['x4epersdb']['usergroupMapping'][$pid])) {
+		$pageTSconf = t3lib_BEfunc::getPagesTSconfig($pid);
+		$pageTSconf = $pageTSconf['plugin.']['x4epersdb.'];
+
+		if ($pageTSconf['defaultUserGroup'] && !empty($pageTSconf['defaultUserGroup'])) {
+			return $pageTSconf['defaultUserGroup'];
+   		} else if (isset($TYPO3_CONF_VARS['EXTCONF']['x4epersdb']['usergroupMapping'][$pid])) {
    			return $TYPO3_CONF_VARS['EXTCONF']['x4epersdb']['usergroupMapping'][$pid];
    		} else {
    			return $this->defaultUserGroup;
