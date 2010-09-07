@@ -281,7 +281,7 @@ class tx_x4epersdb_pi2 extends x4epibase {
 						// handle external page
 						if ($v['doktype']==3) {
 							//$menu->menuArr[$count]['_OVERRIDE_HREF'] = 'http://'.$menu->menuArr[$count]['url'];
-							$menu->menuArr[$count]['_OVERRIDE_HREF'] = $menu->menuArr[$count]['url'];
+							$menu->menuArr[$count]['_OVERRIDE_HREF'] = $this->validateExtUrl($menu->menuArr[$count]['url']);
 							$menu->menuArr[$count]['_OVERRIDE_TARGET'] = '_blank';
 						} else {
 							$lConf = array(
@@ -297,6 +297,24 @@ class tx_x4epersdb_pi2 extends x4epibase {
 				break;
 			}
 			$count++;
+		}
+	}
+	
+	/**
+	 * Makes sure, that a valid external URL is rendered
+	 * @param string $url 	URL to validate
+	 * @return string 		Valid URL
+	 */
+	function validateExtUrl($url){
+		$url = trim($url);
+		if($url!=''){
+			if (substr($url,0,7) != 'http://') {
+				return 'http://'.$url;
+			} else {
+				return $url;
+			}
+		}else{
+			return '';
 		}
 	}
 	

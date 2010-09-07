@@ -1,3 +1,6 @@
+2010-09-07 Alessandro Bellafronte
+	* Bugfix concerning the rendering of external URL in person-menue (pi2) - Added a new method "validateExtUrl()"
+
 2010-08-30 Markus Stauffiger <markus-at-4eyes.ch>
 	* Hooks to create fe_users, pages etc. now conditional, see manual for
 	  page ts setup
