@@ -287,7 +287,6 @@ class tx_x4epersdb_tcemainprocdm {
 			} else {
 				$username = $this->generateUsername($fieldArray);
 			}
-			$email = 
 
 			$data['fe_users']['NEW001'] = array (
 				'username' => $username ,
@@ -295,7 +294,6 @@ class tx_x4epersdb_tcemainprocdm {
 				'usergroup' => $this->getDefaultUserGroup()
 			);
 				// change the pid of the fe-users to the selected folder
-
 			$pageTSconf = t3lib_BEfunc::getPagesTSconfig($pid);
 			$pageTSconf = $pageTSconf['plugin.']['x4epersdb.'];
 			if ($pageTSconf['defaultFeUserPid']) {
