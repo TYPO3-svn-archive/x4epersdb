@@ -76,6 +76,7 @@ plugin.tx_x4epersdb_pi1 {
 	skipHtmlEntitiesFields = all
 	# Number of chars per step (ex. 4 => A-D, E-H)
 	alphabeticPageBrowserStepSize = 4
+	startListWithFirstLetterCombo = 1
 }
 
 

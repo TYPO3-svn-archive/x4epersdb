@@ -422,6 +422,19 @@ class tx_x4epersdb_pi1 extends x4epibase {
 		$this->pi_alwaysPrev = $this->lConf['alwaysPrev'];
 		$this->viewMode = 'listView';
 
+		$hookObjectsArr = array();
+		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['x4epersdb/pi1/class.tx_x4epersdb_pi1.php']['listView'])) {
+			foreach($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['x4epersdb/pi1/class.tx_x4epersdb_pi1.php']['listView'] as $classRef) {
+				$hookObjectsArr[] = &t3lib_div::getUserObj($classRef);
+			}
+		}
+
+		foreach($hookObjectsArr as $hookObj) {
+			if (method_exists($hookObj, 'preListView')) {
+				$hookObj->preListView($this);
+			}
+		}
+
 		if (!isset($this->piVars['pointer']))	$this->piVars['pointer']=0;
 		if (!isset($this->piVars['sort']))	$this->piVars['sort']='lastname';
 
@@ -448,11 +461,10 @@ class tx_x4epersdb_pi1 extends x4epibase {
 			
 		}
 
-
 		$start = intval($this->piVars['start']);
 		$end = intval($this->piVars['end']);
 
-		if ($start==0) {
+		if ($start == 0 && $this->getTSFFVar('startListWithFirstLetterCombo')) {
 			$this->piVars['start'] = 65;
 			$start=65;
 			$end=$start+$this->getTSFFVar('alphabeticPageBrowserStepSize')-1;
@@ -461,7 +473,7 @@ class tx_x4epersdb_pi1 extends x4epibase {
 		if ($this->piVars['sword'] != '') {
 			$this->piVars['start'] = '';
 			$this->piVars['end'] = '';
-		} else {
+		} elseif ($start > 0 || $this->getTSFFVar('startListWithFirstLetterCombo')) {
 			if (t3lib_div::intInRange($start,64,86) && t3lib_div::intInRange($end,68,90)) {
 				$addWhere .= ' AND SUBSTRING(lastname,1) >= "'.chr($start).'" AND SUBSTRING(lastname,1) <= "'.chr($end+1).'"';
 			}
@@ -472,6 +484,13 @@ class tx_x4epersdb_pi1 extends x4epibase {
 
 			// Get number of records:
 		$this->conf['pidList'] = $this->conf['feUsers']['pidList'];
+
+		foreach($hookObjectsArr as $hookObj) {
+			if (method_exists($hookObj, 'modifyWhereClause')) {
+				$hookObj->modifyWhereClause($addWhere, $this);
+			}
+		}
+
 		$query = $this->pi_list_query($this->table,1,$addWhere);
 		$res = $GLOBALS['TYPO3_DB']->sql_query($query);
 		list($this->internal['res_count']) = $GLOBALS['TYPO3_DB']->sql_fetch_row($res);
@@ -490,6 +509,13 @@ class tx_x4epersdb_pi1 extends x4epibase {
 		$wrapArr = $this->conf['listView.'];
 		$mArr['###pageBrowser###'] = $this->alphabeticPageBrowser($this->getTSFFVar('alphabeticPageBrowserStepSize'));
 		$tmpl = $this->cObj->getSubpart($this->template,'###listView###');
+
+		foreach($hookObjectsArr as $hookObj) {
+			if (method_exists($hookObj, 'modifyMarkers')) {
+				$hookObj->modifyMarkers($mArr, $tmpl, $this);
+			}
+		}
+
 		return $this->cObj->substituteMarkerArrayCached($tmpl,$mArr,$subArr);
 	}
 
@@ -981,10 +1007,23 @@ class tx_x4epersdb_pi1 extends x4epibase {
 	 */
 	function alphabeticPageBrowser($step=4) {
 		$t = $this->cObj->getSubpart($this->template,'###alphabeticPageBrowser###');
-		$elT = $this->cObj->getSubpart($t,'###aPBElement###');
-		$elActT = $this->cObj->getSubpart($t,'###aPBElementActive###');
-			// remove active from main template
-		$t = $this->cObj->substituteSubpart($t,'###aPBElementActive###','');
+
+		if ($step == '1') {
+			$elT = $this->cObj->getSubpart($t,'###aPBElementSingle###');
+			$elActT = $this->cObj->getSubpart($t,'###aPBElementActiveSingle###');
+				// remove active and single from main template
+			$t = $this->cObj->substituteSubpart($t,'###aPBElementActiveSingle###','');
+			$t = $this->cObj->substituteSubpart($t,'###aPBElement###','');
+			$t = $this->cObj->substituteSubpart($t,'###aPBElementActive###','');
+		} else {
+			$elT = $this->cObj->getSubpart($t,'###aPBElement###');
+			$elActT = $this->cObj->getSubpart($t,'###aPBElementActive###');
+				// remove active and single from main template
+			$t = $this->cObj->substituteSubpart($t,'###aPBElementActive###','');
+			$t = $this->cObj->substituteSubpart($t,'###aPBElementSingle###','');
+			$t = $this->cObj->substituteSubpart($t,'###aPBElementActiveSingle###','');
+		}
+
 		$out = '';
 		for ($i=65;$i<90;$i=$i+$step) {
 			$upper = $i+$step-1;
@@ -1004,7 +1043,12 @@ class tx_x4epersdb_pi1 extends x4epibase {
 				$i = 90;
 			}
 		}
-		return $this->cObj->substituteSubpart($t,'###aPBElement###',$out);
+
+		if ($step == '1') {
+			return $this->cObj->substituteSubpart($t,'###aPBElementSingle###',$out);
+		} else {
+			return $this->cObj->substituteSubpart($t,'###aPBElement###',$out);
+		}
 	}
 
 	/**
