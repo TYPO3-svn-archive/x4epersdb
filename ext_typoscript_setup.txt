@@ -16,6 +16,8 @@ plugin.tx_x4epersdb_pi1 {
 	alumniFuncUid = {$persDB.alumniFuncUid}
 	# page to redirect to, if person is not available
 	personNotAvailablePageUid = {$persDB.listPageUid}
+	# date format of date fields
+	dateFormat = %d.%m.%Y
 
 	detailView {
 		#publication plugin (if x4epublication is installed)
