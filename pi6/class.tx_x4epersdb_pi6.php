@@ -91,6 +91,11 @@ class tx_x4epersdb_pi6 extends tslib_pibase {
 			$person = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*',$this->personTable,'feuser_id = '.$GLOBALS['TSFE']->fe_user->user['uid']);
 			$person = $person[0];
 			return '<p>'.$this->pi_linkToPage($this->text,$this->linkPageUid,'',array('tx_'.$this->extKey.'_pi1[showUid]'=>$person['uid'])).'</p>';
+		} else {
+			if($this->linkPageUid && $_GET['tx_x4epersdb_pi1']['showUid']){
+				$pers = $_GET['tx_x4epersdb_pi1']['showUid'];
+				return '<p> &gt;&nbsp;'.$this->pi_linkToPage('Research',$this->linkPageUid,'',array('tx_'.$this->extKey.'_pi1[showUid]'=>$pers)).'</p>';
+			}
 		}
 	}
 

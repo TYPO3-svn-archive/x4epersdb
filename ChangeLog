@@ -1,3 +1,6 @@
+2010-10-21 Manuel Kammermann <manuel-at-4eyes.ch>
+	* previous: detaillink only when FE-User logged in. now: if not logged in FE-User, detaillink to showUid on alternative page possible
+
 2010-09-22 Markus Stauffiger <markus-at-4eyes.ch>
 	* Removed unnecessary line in hook
 
