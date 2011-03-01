@@ -82,7 +82,7 @@ class tx_x4epersdb_pi3 extends x4epibase {
 
 		// add alternating template if selected
 		$templateId = $this->getTSFFvar('templateSelection');
-		if ($templateId >= 2 && $templateId < 6) {
+		if (($templateId >= 2 && $templateId < 6) || $templateId == 12) {
 			$templ[0] = $this->cObj->getSubpart($template,'###even###');
 			$templ[1] = $this->cObj->getSubpart($template,'###odd###');
 		} else {
@@ -125,6 +125,7 @@ class tx_x4epersdb_pi3 extends x4epibase {
 						} else {
 							$mArr['###linkStart###'] = $mArr['###linkEnd###'] = '';
 						}
+						
 						$out .= $this->cObj->substituteMarkerArrayCached($templ[$i%2],$mArr,$sp);
 						$i++;
 					}
