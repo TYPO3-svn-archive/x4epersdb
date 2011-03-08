@@ -929,6 +929,7 @@ class tx_x4epersdb_pi1 extends x4epibase {
 			case 'research':
 			case 'membership':
 			case 'profile':
+			case 'addInfo':
 				return $this->pi_RTEcssText($this->internal['currentRow'][$fN]);
 			break;
 			case 'lastname':
@@ -983,6 +984,8 @@ class tx_x4epersdb_pi1 extends x4epibase {
 				$mArr['###cellClass###'] = 'class="lastname"';
 			}  else if($fieldName == 'function_suffix'){
 				$mArr['###cellClass###'] = 'class="function-suffix"';
+			}  else if($fieldName == 'title'){
+				$mArr['###cellClass###'] = 'class="no-wrap"';
 			} else {
 				$mArr['###cellClass###'] = '';
 			}
