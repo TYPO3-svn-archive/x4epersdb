@@ -136,6 +136,7 @@ class tx_x4epersdb_pi1 extends x4epibase {
 		$this->manualFieldOrder = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'field_manualOrder') ? TRUE : FALSE;
 		$this->manualFieldOrder_details = t3lib_div::trimExplode(',',$this->pi_getFFvalue($this->cObj->data['pi_flexform'],'field_orderDetails'),1);
 		$this->manualFieldOrder_list = t3lib_div::trimExplode(',',$this->getTSFFvar('field_orderList'),1);
+		$this->tableName = $this->table;
 		
 		if (strstr($this->cObj->currentRecord,'tt_content'))	{
 			$this->conf['pidList'] = $this->cObj->data['pages'];

@@ -333,14 +333,17 @@ class tx_x4epersdb_pi2 extends x4epibase {
 	/**
 	 * Checks whether user has publications, only relevant if x4epublication is installed
 	 *
-	 * @todo Check if x4epublication is installed, otherwise return false
 	 *
 	 * @param 	array	$user	User record
 	 * @return 	boolean
 	 */
 	function hasPublications(&$user) {
-		$this->makePublicationInstance();
-		return $this->publ->hasPublication($user['uid']);
+		if($user['showpublicsinmenu'] && t3lib_extMgm::isLoaded('x4epublication')){
+			$this->makePublicationInstance();
+			return $this->publ->hasPublication($user['uid']);
+		}else{
+			return false;
+		}
 	}
 
 	/**

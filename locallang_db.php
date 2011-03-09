@@ -61,6 +61,7 @@ $LOCAL_LANG = Array (
 		'publadmin' => 'Publication super-user',
 		'qualiadmin' => 'Qualification super-user',
 		'showpublics' => 'Show latest publications',
+		'showpublicsinmenu' => 'Show publication link in border menu',
 		'showisislink'	=> 'Show isis link',
 		'showisislink.none' => "Don't show",
 		'showisislink.current' => 'Show current',
@@ -98,7 +99,8 @@ $LOCAL_LANG = Array (
 		'tx_x4emutation_speciality' => 'Speciality',
 		'external_id' => 'External ID',
 		'rssUrl' => 'Publications Rss Feed',
-		'feuser_id' => 'FE User'
+		'feuser_id' => 'FE User',
+		'add_info' => 'Additional Information'
 	),
 	'de' => Array (
 		'tt_content.list_type_pi1' => 'PersonenDB - Personen Liste',
@@ -148,6 +150,7 @@ $LOCAL_LANG = Array (
 		'publadmin' => 'Publikations Super-User',
 		'qualiadmin' => 'Qualifikations Super-User',
 		'showpublics' => 'Aktuelle Publikationen anzeigen',
+		'showpublicsinmenu' => 'Link zu den Publikationen im rechten Menu anzeigen',
 		'showisislink'	=> 'Isis Link',
 		'showisislink.none' => 'Nicht anzeigen',
 		'showisislink.current' => 'Nur Aktuelle anzeigen',
@@ -178,8 +181,8 @@ $LOCAL_LANG = Array (
 		'tx_x4emutation_affiliation' => 'Affiliation',
 		'tx_x4emutation_speciality' => 'Speciality',
 		'external_id' => 'Externe ID',
-		'rssUrl' => 'Publikations Rss Feed'
-
+		'rssUrl' => 'Publikations Rss Feed',
+		'add_info' => 'Diverses'
 	),
 );
 ?>

@@ -803,6 +803,13 @@ $TCA['tx_x4epersdb_person'] = Array (
 				'type' => 'check',
 			)
 		),
+		'showpublicsinmenu' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:showpublicsinmenu',
+			'config' => Array (
+				'type' => 'check',
+			)
+		),
 		'feuser_id' => Array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:feuser_id',
@@ -927,7 +934,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 								--div--;Bild/Profil,image,profile;;;richtext[paste|bold|italic|underline|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[flag=rte_enabled|mode=ts],membership;;;richtext[paste|bold|italic|underline|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[flag=rte_enabled|mode=ts],
 								--div--;Office,buildings,institutes,departments,floor,room,office_address,office_roomnumber,office_zip,office_location,office_country,office_phone,office_phone2,office_mobile_phone,office_fax,email2,
 								--div--;Zweitadresse / Privat,address,zip,city,country,phone,phone2,mobile,fax,url,
-								--div--;Spezial,username,password,lecture_link,publadmin, qualiadmin, showpublics,personal_page,beuser,feuser_id,company,static_info_country,tx_x4emutation_department,tx_x4emutation_affiliation,tx_x4emutation_speciality,rssUrl,
+								--div--;Spezial,username,password,lecture_link,publadmin, qualiadmin, showpublics, showpublicsinmenu,personal_page,beuser,feuser_id,company,static_info_country,tx_x4emutation_department,tx_x4emutation_affiliation,tx_x4emutation_speciality,rssUrl,
 								--div--;Zentrale Forschungsdatenbank,dni,mcss_id,main_entry')
 	),
 	'palettes' => Array (

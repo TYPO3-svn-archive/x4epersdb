@@ -75,7 +75,10 @@ CREATE TABLE tx_x4epersdb_person_institute_mm (
 	uid_local int(11) NOT NULL,
 	uid_foreign int(11) NOT NULL,
 	sorting int(10) DEFAULT '0' NOT NULL,
-
+	
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign),
+	KEY uid_local_foreign (uid_local,uid_foreign)
 );
 
 CREATE TABLE tx_x4epersdb_buildings (
@@ -103,14 +106,20 @@ CREATE TABLE tx_x4epersdb_person_building_mm (
 	uid_local int(11) NOT NULL,
 	uid_foreign int(11) NOT NULL,
 	sorting int(10) DEFAULT '0' NOT NULL,
-
+	
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign),
+	KEY uid_local_foreign (uid_local,uid_foreign)
 );
 
 CREATE TABLE tx_x4epersdb_person_department_mm (
 	uid_local int(11) NOT NULL,
 	uid_foreign int(11) NOT NULL,
 	sorting int(10) DEFAULT '0' NOT NULL,
-
+	
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign),
+	KEY uid_local_foreign (uid_local,uid_foreign)
 );
 
 #
@@ -171,6 +180,7 @@ CREATE TABLE tx_x4epersdb_person (
 	publadmin tinyint(3) DEFAULT '0' NOT NULL,
 	qualiadmin tinyint(3) DEFAULT '0' NOT NULL,
 	showpublics tinyint(3) DEFAULT '1' NOT NULL,
+	showpublicsinmenu tinyint(3) DEFAULT '1' NOT NULL,
 	showisislink tinyint(3) DEFAULT '1' NOT NULL,
 	isisid tinytext NOT NULL,
 	password tinytext NOT NULL,
