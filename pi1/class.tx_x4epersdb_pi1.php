@@ -557,8 +557,7 @@ class tx_x4epersdb_pi1 extends x4epibase {
 			}
 			return $this->pi_list_makelist(null,$persons);
 		} else {
-			$query = $this->pi_list_query($this->table,0,$addWhere);
-			$res = $GLOBALS['TYPO3_DB']->sql_query($query);
+			$res = $this->pi_exec_query($this->table,0,$addWhere);
 
 				// Adds the whole list table
 			return $this->pi_list_makelist($res);
