@@ -422,6 +422,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 			'config' => Array (
 				'type' => 'input',
 				'size' => '20',
+				'eval' => 'tx_x4epersdb_tcaEvals',
 			)
 		),
 		'office_address' => Array (
@@ -471,6 +472,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 			'config' => Array (
 				'type' => 'input',
 				'size' => '20',
+				'eval' => 'tx_x4epersdb_tcaEvals',
 			)
 		),
 		'office_phone2' => Array (
@@ -479,6 +481,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 			'config' => Array (
 				'type' => 'input',
 				'size' => '20',
+				'eval' => 'tx_x4epersdb_tcaEvals',
 			)
 		),
 		'office_fax' => Array (
@@ -487,6 +490,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 			'config' => Array (
 				'type' => 'input',
 				'size' => '20',
+				'eval' => 'tx_x4epersdb_tcaEvals',
 			)
 		),
 		'address' => Array (
@@ -528,6 +532,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 			'config' => Array (
 				'type' => 'input',
 				'size' => '20',
+				'eval' => 'tx_x4epersdb_tcaEvals',
 			)
 		),
 		'phone2' => Array (
@@ -536,6 +541,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 			'config' => Array (
 				'type' => 'input',
 				'size' => '20',
+				'eval' => 'tx_x4epersdb_tcaEvals',
 			)
 		),
 		'mobile' => Array (
@@ -544,6 +550,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 			'config' => Array (
 				'type' => 'input',
 				'size' => '20',
+				'eval' => 'tx_x4epersdb_tcaEvals',
 			)
 		),
 		'fax' => Array (
@@ -552,6 +559,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 			'config' => Array (
 				'type' => 'input',
 				'size' => '20',
+				'eval' => 'tx_x4epersdb_tcaEvals',
 			)
 		),
 		'url' => Array (
@@ -661,6 +669,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 			'config' => Array (
 				'type' => 'input',
 				'size' => '20',
+				'eval' => 'tx_x4epersdb_tcaEvals',
 			)
 		),
 		'phone2' => Array (
@@ -669,6 +678,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 			'config' => Array (
 				'type' => 'input',
 				'size' => '20',
+				'eval' => 'tx_x4epersdb_tcaEvals',
 			)
 		),
 		'room' => Array (

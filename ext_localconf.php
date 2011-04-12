@@ -60,4 +60,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['tx_x4epersdb_dn
     'title'            => 'Import der Personen-ID',
     'description'      => 'Dieser Task verarbeitet vordefinierte CSV-Datei mit Personendaten und importiert Personen IDs, falls sie noch nicht exsistieren.'
 );
+
+//Add phone eval class
+$TYPO3_CONF_VARS['SC_OPTIONS']['tce']['formevals']['tx_x4epersdb_tcaEvals'] = 'EXT:x4epersdb/class.tx_x4epersdb_tcemainproc_phone_eval.php';
 ?>
