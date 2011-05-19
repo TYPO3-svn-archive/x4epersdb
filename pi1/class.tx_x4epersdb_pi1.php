@@ -900,7 +900,8 @@ class tx_x4epersdb_pi1 extends x4epibase {
 					$f = $GLOBALS['TYPO3_DB']->exec_SELECTquery('title',$this->functionTable,'uid IN ('.$this->internal['currentRow'][$fN].')'.$this->cObj->enableFields($this->functionTable));
 					$funcs = array();
 					while($fu = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($f)) {
-						$funcs[] = htmlspecialchars($fu['title']);
+                                                $fu = $GLOBALS['TSFE']->sys_page->getRecordOverlay($this->functionTable,$fu,$GLOBALS['TSFE']->sys_language_content,'strict');
+						$funcs[] = htmlspecialchars($fu['title']);          
 					}
 					
 					return implode('</li><li>',$funcs);
