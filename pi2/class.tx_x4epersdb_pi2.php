@@ -27,7 +27,6 @@
  * @author	Markus Stauffiger <markus@4eyes.ch>
  */
 
-
 require_once('typo3conf/ext/x4epibase/class.x4epibase.php');
 
 class tx_x4epersdb_pi2 extends x4epibase {
@@ -36,8 +35,8 @@ class tx_x4epersdb_pi2 extends x4epibase {
 	var $extKey = 'x4epersdb';	// The extension key.
 	var $pi_checkCHash = TRUE;
 	var $template = ''; // the template...
-	var $pi_USER_INT_obj = true;
-	
+	var $pi_USER_INT_obj = TRUE;
+
 	/**
 	 * Record of current person
 	 *
@@ -69,15 +68,14 @@ class tx_x4epersdb_pi2 extends x4epibase {
 	 *
 	 * @var object
 	 */
-	var $publ = null;
-	
+	var $publ = NULL;
+
 	/**
 	 * Array of research groups
 	 *
 	 * @var array
 	 */
 	var $researchGroups = array();
-	
 
 
 	/**
@@ -103,7 +101,7 @@ class tx_x4epersdb_pi2 extends x4epibase {
 		if ($this->template == '') {
 			return 'No template found';
 		}
-		
+
 			// add selected
 		$this->conf['persNav.']['1.']['addParams'] = '&'.$this->pi1prefixId.'[showUid]='.intval($_GET[$this->pi1prefixId]['showUid']);
 		$pA = t3lib_div::cHashParams($this->conf['persNav.']['1.']['addParams']);	// Added '.$this->linkVars' dec 2003: The need for adding the linkVars is that they will be included in the link, but not the cHash. Thus the linkVars will always be the problem that prevents the cHash from working. I cannot see what negative implications in terms of incompatibilities this could bring, but for now I hope there are none. So here we go... (- kasper)
@@ -114,7 +112,7 @@ class tx_x4epersdb_pi2 extends x4epibase {
 		$user = $this->pi_getRecord($this->personTable,$user['showUid']);
 
 		$pages = $this->getTSFFvar('displayPages');
-		
+
 		if ($pages != ''){
 			$pids = array_merge($pids,t3lib_div::trimExplode(',',$pages));
 		} else {
@@ -123,7 +121,7 @@ class tx_x4epersdb_pi2 extends x4epibase {
 				array_push($pids,$mI['uid']);
 			}
 		}
-		
+
 		foreach($pids as $k => $v) {
 			switch ($v) {
 				case $this->conf['resumePageUid']: // = resume page
@@ -167,7 +165,7 @@ class tx_x4epersdb_pi2 extends x4epibase {
 					if (!$this->hasResearchGroups($user)) {
 						$pids[$k] = '';
 					} else {
-						
+
 					}
 				break;
 				case $this->conf['displayOwnPageUid']: // add personal pages
@@ -181,14 +179,14 @@ class tx_x4epersdb_pi2 extends x4epibase {
 					if(!$this->hasCongresses($user)){
 						$pids[$k] = '';
 					} else {
-					
+
 					}
 				break;
 				default:
 				break;
 			}
 		}
-		
+
 		$this->getCurrentPerson();
 
 		$this->conf['persNav.']['special.']['value'] = implode(',',$pids);
@@ -198,11 +196,11 @@ class tx_x4epersdb_pi2 extends x4epibase {
 			// get user data
 		require_once(PATH_tslib.'class.tslib_menu.php');
 		$menu = t3lib_div::makeInstance('tslib_tmenu');
-		$menu->parent_cObj = $this->cObj;	
+		$menu->parent_cObj = $this->cObj;
 		$menu->start($GLOBALS['TSFE']->tmpl,$GLOBALS['TSFE']->sys_page ,'',$this->conf['persNav.'],1);
-		
+
 		$menu->makeMenu();
-		
+
 		if ($this->conf['researchGroupPageUid']>0) {
 			$this->addResearchPages($menu);
 		}
@@ -210,11 +208,11 @@ class tx_x4epersdb_pi2 extends x4epibase {
 		if ($this->conf['showPersPagesOnSinglePage']) {
 			$this->showPersPagesOnSinglePage($menu,$user);
 		}
-		
-		$mArr['###regularMenu###'] = $menu->writeMenu();		
-		
+
+		$mArr['###regularMenu###'] = $menu->writeMenu();
+
 		// get the menu with only the pages to show when userid = logged-in id
-		if (($GLOBALS['TSFE']->loginUser) && ($this->getTSFFvar("onlyShowIfSessionEQUserUid") != '') && (($_GET[$this->pi1prefixId]['showUid'] == $this->person['uid']) || ($this->person['publadmin'] == 1) || ($this->person['qualiadmin'] == 1))) {
+		if (($GLOBALS['TSFE']->loginUser) && ($this->getTSFFvar('onlyShowIfSessionEQUserUid') != '') && (($_GET[$this->pi1prefixId]['showUid'] == $this->person['uid']) || ($this->person['publadmin'] == 1) || ($this->person['qualiadmin'] == 1))) {
 			$persOptT = $this->cObj->getSubpart($this->template,'###personalOptions###');
 			$this->conf['persNav.']['special'] = 'list';
 			$this->conf['persNav.']['special.']['value'] = $this->conf['persNav.']['excludeUidList'];
@@ -238,11 +236,11 @@ class tx_x4epersdb_pi2 extends x4epibase {
 		} else {
 			$subP['###personalOptions###'] = '';
 		}
-		
+
 		$out =$this->cObj->substituteMarkerArrayCached($this->template,$mArr,$subP);
 		$addTitle = '';
 		if ($this->getTSFFvar('ResearchLinkTitle') != ''){
-			$addTitle = "<h1>".$this->getTSFFvar('ResearchLinkTitle')."</h1>";
+			$addTitle = '<h1>'.$this->getTSFFvar('ResearchLinkTitle').'</h1>';
 		}
 		return $addTitle . $this->pi_wrapInBaseClass($out);
 	}
@@ -299,7 +297,7 @@ class tx_x4epersdb_pi2 extends x4epibase {
 			$count++;
 		}
 	}
-	
+
 	/**
 	 * Makes sure, that a valid external URL is rendered
 	 * @param string $url 	URL to validate
@@ -342,7 +340,7 @@ class tx_x4epersdb_pi2 extends x4epibase {
 			$this->makePublicationInstance();
 			return $this->publ->hasPublication($user['uid']);
 		}else{
-			return false;
+			return FALSE;
 		}
 	}
 
@@ -355,7 +353,7 @@ class tx_x4epersdb_pi2 extends x4epibase {
 	 * @return void
 	 */
 	function makePublicationInstance() {
-		if ($this->publ == null) {
+		if ($this->publ == NULL) {
 			require_once(PATH_typo3conf.'ext/x4epublication/pi1/class.'.$this->publicationExt.'.php');
 			$this->publ = t3lib_div::makeInstance($this->publicationExt);
 			$this->publ->cObj = $this->cObj;
@@ -382,7 +380,7 @@ class tx_x4epersdb_pi2 extends x4epibase {
 	/**
 	 * Checks whether user has qualification workings, only relevant if x4equalificationgeneral is installed
 	 *
-	 * @todo Check if x4equalificationgeneral is installed, otherwise return false
+	 * @todo Check if x4equalificationgeneral is installed, otherwise return FALSE
 	 *
 	 * @param 	array	$user	User record
 	 * @return 	boolean
@@ -390,31 +388,31 @@ class tx_x4epersdb_pi2 extends x4epibase {
 	function hasQualificationWorkings(&$user) {
 		$q = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('count(*)','tx_x4equalificationgeneral_list','1 AND FIND_IN_SET('.$user['uid'].',tx_x4equalificationgeneral_list.organizer)'.$this->cObj->enableFields('tx_x4equalificationgeneral_list'));
 		if ($q[0]['count(*)'] > 0) {
-			return true;
+			return TRUE;
 		}
-		return false;
+		return FALSE;
 	}
-	
+
 	/**
 	 * Checks whether user has office hours, only relevant if x4eofficehour is installed
-	 * 
-	 * @todo Check if x4eofficehour is installed, otherwise return false
+	 *
+	 * @todo Check if x4eofficehour is installed, otherwise return FALSE
 	 *
 	 * @param 	array	$user	User record
 	 * @return 	boolean
 	 */
 	function hasOfficeHours(&$user){
-		$q = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('count(*)','tx_x4eofficehour_events', 'owner ='.$user['uid'].' AND startd >= '.strtotime("today").$this->cObj->enableFields('tx_x4eofficehour_events'));
+		$q = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('count(*)','tx_x4eofficehour_events', 'owner ='.$user['uid'].' AND startd >= '.strtotime('today').$this->cObj->enableFields('tx_x4eofficehour_events'));
 		if ($q[0]['count(*)'] > 0) {
-			return true;
+			return TRUE;
 		}
-		return false;
+		return FALSE;
 	}
-	
+
 	/**
 	 * Checks whether user has congresses, only relevant if x4econgress is installed
 	 *
-	 * @todo Check if x4econgress is installed, otherwise return false
+	 * @todo Check if x4econgress is installed, otherwise return FALSE
 	 *
 	 * @param 	array	$user	User record
 	 * @return 	boolean
@@ -424,18 +422,18 @@ class tx_x4epersdb_pi2 extends x4epibase {
 		$memberSubQ = $GLOBALS['TYPO3_DB']->SELECTquery('uid_local','tx_x4econgress_congresses_persons_mm','uid_foreign = '.intval($user['uid']));
 		$this->researchGroups = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*','tx_x4econgress_congresses','(uid IN ('.$headSubQ.') OR uid IN ('.$memberSubQ.'))'.$this->cObj->enableFields('tx_x4econgress_congresses'));
 		if (isset($this->researchGroups[0]['uid'])) {
-			return true;
-		
+			return TRUE;
+
 		} else {
-			return false;
+			return FALSE;
 		}
 	}
-	
+
 	/**
 	 * Checks whether user is a group leader, only relevant if x4eresearchgroup is installed
 	 *
-	 * @todo Check if x4econgress is installed, otherwise return false
-	 * 
+	 * @todo Check if x4econgress is installed, otherwise return FALSE
+	 *
 	 * @author Manuel Kammermann <manuel@4eyes.ch>
 	 * @param 	array	$user	User record
 	 * @return 	boolean
@@ -443,9 +441,9 @@ class tx_x4epersdb_pi2 extends x4epibase {
 	function isGroupLeader(&$user){
 		$q = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('count(*)','tx_x4eresearch_researchgroup_head_mm','uid_foreign IN ('.$user['uid'].')');
 		if ($q[0]['count(*)'] > 0) {
-			return true;
+			return TRUE;
 		}
-		return false;
+		return FALSE;
 	}
 
 	/**
@@ -459,7 +457,7 @@ class tx_x4epersdb_pi2 extends x4epibase {
 			return $this->conf['coursePageUid'];
 		}
 	}
-	
+
 	/**
 	 * Checks if the given page contains active content.
 	 *
@@ -474,54 +472,57 @@ class tx_x4epersdb_pi2 extends x4epibase {
 			if(count($contentArr) > 0) {
 				$numContent = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('count(uid)','tt_content','uid IN ('.implode(',',$contentArr).')'.$GLOBALS['TSFE']->cObj->enableFields('tt_content'));
 				if($numContent[0]['count(uid)']>0) {
-					return true;
+					return TRUE;
 				} else {
-					return false;
+					return FALSE;
 				}
 			} else {
-				return false;
+				return FALSE;
 			}
-			
+
 		}
 	}
-	
+
 	/**
 	 * Checks if user is in any researchgroups, only relevant if x4eresearchgroup is installed
 	 *
-	 * @todo Check if x4econgress is installed, otherwise return false
+	 * @todo Check if x4econgress is installed, otherwise return FALSE
 	 *
 	 * @param array $user
 	 * @return boolean
 	 */
 	function hasResearchGroups(&$user) {
-	
 		$lang = intval(t3lib_div::GPvar('L'));
-		
-		$addWhere = ' sys_language_uid = '.$lang;
-		
+
+		$addWhere = ' AND sys_language_uid = 0';
+
 		$headSubQ = $GLOBALS['TYPO3_DB']->SELECTquery('uid_local','tx_x4eresearch_researchgroup_head_mm','uid_foreign = '.intval($user['uid']));
 		$memberSubQ = $GLOBALS['TYPO3_DB']->SELECTquery('uid_local','tx_x4eresearch_researchgroup_members_mm','uid_foreign = '.intval($user['uid']));
-		$this->researchGroups = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*','tx_x4eresearch_researchgroup','(uid IN ('.$headSubQ.') OR uid IN ('.$memberSubQ.'))'.$this->cObj->enableFields('tx_x4eresearch_researchgroup').' AND '.$addWhere);
-		if (isset($this->researchGroups[0]['uid'])) {
-			return true;
-		
+		$this->researchGroups = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*','tx_x4eresearch_researchgroup','(uid IN ('.$headSubQ.') OR uid IN ('.$memberSubQ.'))'.$this->cObj->enableFields('tx_x4eresearch_researchgroup').$addWhere);
+
+		if(intval($lang)>0 && isset($this->researchGroups[0]['uid'])){
+			$this->researchGroups[0] = $GLOBALS['TSFE']->sys_page->getRecordOverlay('tx_x4eresearch_researchgroup',$this->researchGroups[0],$lang);
+		}
+
+		if (isset($this->researchGroups[0]['uid'])){
+			return TRUE;
 		} else {
-			return false;
+			return FALSE;
 		}
 	}
-	
+
 	/**
 	 * Returns the page uid for the researchgroups as many
 	 * times as the user is in a researchgroup, only relevant if x4eresearchgroup is installed
 	 *
-	 * @todo Check if x4econgress is installed, otherwise return false
+	 * @todo Check if x4econgress is installed, otherwise return FALSE
 	 *
 	 * @param object $menu	Typoscript menu object (by reference)
 	 * @retun void
 	 */
 	function addResearchPages(&$menu) {
 		if (count($this->researchGroups)>0) {
-			
+
 			$count = 0;
 			$menuArr = array();
 			//Saving the menu structure temp.
@@ -529,20 +530,21 @@ class tx_x4epersdb_pi2 extends x4epibase {
 			//Clear the menu structure...
 			unset($menu->result);
 			$menu->result = array();
-			//...and reassemble it by going through each menu point... 
+			//...and reassemble it by going through each menu point...
 			foreach($menu->menuArr as $k => $v) {
 				switch ($v['uid']) {
 					case $this->conf['researchGroupPageUid']:
-						
+
 						foreach($this->researchGroups as $rg) {
-							$menuElement['title'] = $rg['name'];
-							
-							$menuElement['_OVERRIDE_TARGET'] = '_self';
-							$params['tx_x4eresearch_pi1[showUid]'] = $rg['uid'];
-							$menuElement['_OVERRIDE_HREF'] = $GLOBALS['TSFE']->cObj->getTypoLink_URL($this->conf['researchGroupDetailPageUid'],$params);
-							$menuArr[]=$menuElement;
-							//If a new research group page is inserted into the menu, a not active menu point is inserted into the menu structure 
-							$menu->result[] = $tempMenuRes[$count];
+							// temporarly (!!!) fix to display group without head 30.09.2010
+							//Exclude researchgroup "Klinische Psychologie" from persdb-menu
+								$menuElement['title'] = $rg['name'];
+								$menuElement['_OVERRIDE_TARGET'] = '_self';
+								$params['tx_x4eresearch_pi1[showUid]'] = $rg['uid'];
+								$menuElement['_OVERRIDE_HREF'] = $GLOBALS['TSFE']->cObj->getTypoLink_URL($this->conf['researchGroupDetailPageUid'],$params);
+								$menuArr[]=$menuElement;
+								//If a new research group page is inserted into the menu, a not active menu point is inserted into the menu structure
+								$menu->result[] = $tempMenuRes[$count];
 						}
 					break;
 					default:
@@ -552,7 +554,7 @@ class tx_x4epersdb_pi2 extends x4epibase {
 					break;
 				}
 				$count++;
-			} 
+			}
 			$menu->menuArr = $menuArr;
 		}
 	}

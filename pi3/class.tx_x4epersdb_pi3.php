@@ -125,7 +125,6 @@ class tx_x4epersdb_pi3 extends x4epibase {
 						} else {
 							$mArr['###linkStart###'] = $mArr['###linkEnd###'] = '';
 						}
-						
 						$out .= $this->cObj->substituteMarkerArrayCached($templ[$i%2],$mArr,$sp);
 						$i++;
 					}

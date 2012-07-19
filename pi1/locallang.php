@@ -43,6 +43,12 @@ $LOCAL_LANG = Array (
         'pi1_plus_wiz_description' => 'Stellt Listen von Personen aus der Datenbank dar.',
 		'alphabeticLink' => 'Go to alphabetic list',
 		'noResultFound' => 'There are no records match your search criteria',
+		'latestPublicationsTitle' => 'Latest Publications',
+		'profileTitle' => 'Profile',
+		'newsTitle' => 'Latest News',
+		'researchTitle' => 'Research Topics',
+		'membershipTitle' => 'Memberships And Tributes',
+		'allPublicationByAuthorLink' => '&gt; All Publications'
 	),
 	'de' => Array (
 		'listFieldHeader_institute' => 'Institute',
@@ -79,6 +85,12 @@ $LOCAL_LANG = Array (
 		'pi_list_browseresults_last' => 'Ende >>',
 		'alphabeticLink' => '-> Zur alphabetischen Liste',
 		'noResultFound' => 'Es wurden keine entsprechenden Personen gefunden.',
+		'latestPublicationsTitle' => 'Aktuelle Publikationen',
+		'profileTitle' => 'Profil',
+		'newsTitle' => 'Aktuelle News',
+		'researchTitle' => 'Forschungsschwerpunkte',
+		'membershipTitle' => 'Mitgliedschaften und Ehrungen',
+		'allPublicationByAuthorLink' => '&gt; Alle Publikationen'
 	),
 	'en' => Array(
 		'listFieldHeader_institute' => 'Institute',

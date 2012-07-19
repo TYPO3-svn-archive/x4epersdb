@@ -167,6 +167,7 @@ CREATE TABLE tx_x4epersdb_person (
 	mobile tinytext NOT NULL,
 	fax tinytext NOT NULL,
 	url tinytext NOT NULL,
+	url2 tinytext NOT NULL,
 	beuser blob NOT NULL,
 	personal_page varchar(30) NOT NULL default '',
 	resume_page varchar(30) NOT NULL default '',
@@ -174,6 +175,7 @@ CREATE TABLE tx_x4epersdb_person (
 	research_page varchar(30) NOT NULL default '',
 	office_mobile_phone tinytext NOT NULL,
 	profile text NOT NULL,
+	add_info text NOT NULL,
 	news text NOT NULL,
 	research text NOT NULL,
 	membership text NOT NULL,
@@ -192,7 +194,6 @@ CREATE TABLE tx_x4epersdb_person (
 	buildings int(11) DEFAULT '0' NOT NULL,
 	institutes int(11) DEFAULT '0' NOT NULL,
 	fe_groups text NOT NULL,
-	
 	dni int(11) DEFAULT '0' NOT NULL,
 	mcss_id int(11) DEFAULT '0' NOT NULL,
 	main_entry tinyint(4) DEFAULT '0' NOT NULL,

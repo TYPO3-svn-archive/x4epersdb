@@ -27,6 +27,10 @@ t3lib_extMgm::addTypoScript($_EXTKEY,'editorcfg','
 
 t3lib_extMgm::addPItoST43($_EXTKEY,'pi3/class.tx_'.$_EXTKEY.'_pi3.php','_pi3','list_type',1);
 
+t3lib_extMgm::addUserTSConfig('
+	options.saveDocNew.tx_'.$_EXTKEY.'_function=1
+');
+
   ## Extending TypoScript from static template uid=43 to set up userdefined tag:
 t3lib_extMgm::addTypoScript($_EXTKEY,'editorcfg','
 	tt_content.CSS_editor.ch.tx_'.$_EXTKEY.'_pi3 = < plugin.tx_'.$_EXTKEY.'_pi3.CSS_editor

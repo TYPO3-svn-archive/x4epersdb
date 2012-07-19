@@ -218,9 +218,9 @@ $TCA['tx_x4epersdb_buildings'] = Array (
 $TCA['tx_x4epersdb_person'] = Array (
 	'ctrl' => $TCA['tx_x4epersdb_person']['ctrl'],
 	'interface' => Array (
-		'showRecordFieldList' => 'hidden,title,sys_language_uid,l18n_parent,l18n_diffsource',
+		'showRecordFieldList' => 'hidden,title,sys_language_uid,l18n_parent,l18n_diffsource,title,lastname,firstname',
 		'maxDBListItems' => 50,
-		'maxSingleDBListItems' => 100
+		'maxSingleDBListItems' => 1000
 	),
 	'feInterface' => $TCA['tx_x4epersdb_person']['feInterface'],
 	'columns' => Array (
@@ -246,8 +246,8 @@ $TCA['tx_x4epersdb_person'] = Array (
                 'items' => array (
                     array('', 0),
                 ),
-                'foreign_table'       => 'tx_x4epersdb_function',
-                'foreign_table_where' => 'AND tx_x4epersdb_function.pid=###CURRENT_PID### AND tx_x4epersdb_function.sys_language_uid IN (-1,0)',
+                'foreign_table'       => 'tx_x4epersdb_person',
+                'foreign_table_where' => 'AND tx_x4epersdb_person.pid=###CURRENT_PID### AND tx_x4epersdb_person.sys_language_uid IN (-1,0)',
             )
         ),
         'l18n_diffsource' => array (
@@ -265,6 +265,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'username' => Array (
 			'exclude' => 1,
+                        'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:username',
 			'config' => Array (
 				'type' => 'none',
@@ -272,6 +273,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'password' => Array (
 			'exclude' => 1,
+                        'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:password',
 			'config' => Array (
 				'type' => 'input',
@@ -280,6 +282,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'alumni' => Array (
 			'exclude' => 0,
+                        'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:alumni',
 			'config' => Array (
 				'type' => 'check',
@@ -287,6 +290,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'function' => Array (
 			'exclude' => 1,
+                        'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:function',
 			'config' => Array (
 				'type' => 'select',
@@ -299,6 +303,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'fe_groups' => Array (
 			'exclude' => 1,
+                        'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:fe_groups',
 			'config' => Array (
 				'type' => 'select',
@@ -392,6 +397,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'alias' => Array (
 			'exclude' => 1,
+                        'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:alias',
 			'config' => Array (
 				'type' => 'input',
@@ -400,6 +406,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'email' => Array (
 			'exclude' => 1,
+                        'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:email',
 			'config' => Array (
 				'type' => 'input',
@@ -570,6 +577,14 @@ $TCA['tx_x4epersdb_person'] = Array (
 				'size' => '20',
 			)
 		),
+		'url2' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:url2',
+			'config' => Array (
+				'type' => 'input',
+				'size' => '20',
+			)
+		),
 		'lecture_link' => Array (
 			'exclude' => 1,
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:lecture_link',
@@ -699,6 +714,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'image' => Array (
 			'exclude' => 1,
+                        'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:image',
 			'config' => Array (
 				'type' => 'group',
@@ -794,6 +810,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'publadmin' => Array (
 			'exclude' => 1,
+                        'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:publadmin',
 			'config' => Array (
 				'type' => 'check',
@@ -801,6 +818,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'qualiadmin' => Array (
 			'exclude' => 1,
+                        'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:qualiadmin',
 			'config' => Array (
 				'type' => 'check',
@@ -808,6 +826,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'showpublics' => Array (
 			'exclude' => 1,
+                        'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:showpublics',
 			'config' => Array (
 				'type' => 'check',
@@ -815,6 +834,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'showpublicsinmenu' => Array (
 			'exclude' => 1,
+                        'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:showpublicsinmenu',
 			'config' => Array (
 				'type' => 'check',
@@ -822,6 +842,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'feuser_id' => Array (
 			'exclude' => 0,
+                        'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:feuser_id',
 			'config' => Array (
 				'type' => 'select',
@@ -843,6 +864,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'dni' => Array (
 			'exclude' => 1,
+                        'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:dni',
 			'config' => Array (
 				'type' => 'input',
@@ -852,6 +874,7 @@ $TCA['tx_x4epersdb_person'] = Array (
 		),
 		'mcss_id' => Array (
 			'exclude' => 1,
+                           'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:mcss_id',
 			'config' => Array (
 				'type' => 'input',
@@ -938,13 +961,33 @@ $TCA['tx_x4epersdb_person'] = Array (
 				'size' => '100',
 			)
 		),
+		'add_info' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:x4epersdb/locallang_db.php:add_info',
+			'config' => Array (
+				'type' => 'text',
+				'cols' => '30',
+				'rows' => '5',
+				'wizards' => Array(
+					'_PADDING' => 2,
+					'RTE' => Array(
+						'notNewRecords' => 1,
+						'RTEonly' => 1,
+						'type' => 'script',
+						'title' => 'Full screen Rich Text Editing|Formatteret redigering i hele vinduet',
+						'icon' => 'wizard_rte2.gif',
+						'script' => 'wizard_rte.php',
+					),
+				),
+			)
+		),
 	),
 	'types' => Array (
 		'0' => Array('showitem' => 'sys_language_uid;;;;1-1-1,l18n_parent,l18n_diffsource,hidden,alumni, title, firstname, lastname, alias, title_after, email,function,function_suffix,fe_groups,
-								--div--;Bild/Profil,image,profile;;;richtext[paste|bold|italic|underline|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[flag=rte_enabled|mode=ts],membership;;;richtext[paste|bold|italic|underline|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[flag=rte_enabled|mode=ts],
-								--div--;Office,buildings,institutes,departments,floor,room,office_address,office_roomnumber,office_zip,office_location,office_country,office_phone,office_phone2,office_mobile_phone,office_fax,email2,
-								--div--;Zweitadresse / Privat,address,zip,city,country,phone,phone2,mobile,fax,url,
-								--div--;Spezial,username,password,lecture_link,publadmin, qualiadmin, showpublics, showpublicsinmenu,personal_page,beuser,feuser_id,company,static_info_country,tx_x4emutation_department,tx_x4emutation_affiliation,tx_x4emutation_speciality,rssUrl,
+								--div--;Bild/Profil,image,profile;;;richtext[paste|bold|italic|underline|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[flag=rte_enabled|mode=ts],membership;;;richtext[paste|bold|italic|underline|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[flag=rte_enabled|mode=ts],add_info;;;richtext[paste|bold|italic|underline|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[flag=rte_enabled|mode=ts],
+								--div--;Büro,buildings,institutes,departments,floor,room,office_address,office_roomnumber,office_zip,office_location,office_country,office_phone,office_phone2,office_mobile_phone,office_fax,email2,
+								--div--;Zweitadresse / Privat,address,zip,city,country,phone,phone2,mobile,fax,url,url2,
+								--div--;Spezial,username,password,lecture_link,publadmin, qualiadmin, showpublics,showpublicsinmenu,personal_page,beuser,feuser_id,company,static_info_country,tx_x4emutation_department,tx_x4emutation_affiliation,tx_x4emutation_speciality,rssUrl,
 								--div--;Zentrale Forschungsdatenbank,dni,mcss_id,main_entry')
 	),
 	'palettes' => Array (

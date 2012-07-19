@@ -1,0 +1,14 @@
+plugin.tx_x4epersdb {
+	view {
+		# cat=plugin.tx_x4exml/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:x4epersdb/Resources/Private/Templates/
+		# cat=plugin.tx_x4exml/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:x4epersdb/Resources/Private/Partials/
+		# cat=plugin.tx_x4exml/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:x4epersdb/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_x4epersdb//a; type=int+; label=Default storage PID
+		storagePid =
+	}
+}

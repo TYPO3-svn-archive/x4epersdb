@@ -153,11 +153,12 @@ class tx_x4epersdb_tcemainprocdm {
 	 *
 	 * @return void
 	 */
-    function syncUsernameAndEmail($fieldArray,$id,$table){
+    function syncUsernameAndEmail(&$fieldArray,$id,$table){
     	switch ($table){
     	case $this->personTable://UPDATE the fe_user's username
     		if(isset($fieldArray['email'])){
     			$upd['username'] = $fieldArray['email'];
+				$fieldArray['username'] = $fieldArray['email'];
     			$res = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('feuser_id',$this->personTable,'uid='.$id);
     			$where = 'uid='.$res[0]['feuser_id'];
     			$tbl = $this->feUsersTable;
@@ -169,6 +170,7 @@ class tx_x4epersdb_tcemainprocdm {
     	case $this->feUsersTable;//UPDATE the person's email
     		if(isset($fieldArray['username'])){ 
     			$upd['email'] = $fieldArray['username'];
+				$upd['username'] = $fieldArray['username'];
 	    		$where = 'feuser_id='.$id;
     			$tbl = $this->personTable;
     			$exec = true;
@@ -389,7 +391,7 @@ class tx_x4epersdb_tcemainprocdm {
 
    		$pid = $this->getPopViewId($fieldArray);
 
-		$pageTSconf = t3lib_BEfunc::getPagesTSconfig($pid);
+   		$pageTSconf = t3lib_BEfunc::getPagesTSconfig($pid);
 		$pageTSconf = $pageTSconf['plugin.']['x4epersdb.'];
 
 		if ($pageTSconf['defaultUserGroup'] && !empty($pageTSconf['defaultUserGroup'])) {

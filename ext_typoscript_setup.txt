@@ -41,7 +41,7 @@ plugin.tx_x4epersdb_pi1 {
    listViewByFunction {
    		# Hide list, just show the function-links
 		hideListByDefault = 0
-		
+
 		# exclude function uids from listing
 		excludeFunctionUids =
    }
@@ -78,7 +78,7 @@ plugin.tx_x4epersdb_pi1 {
 	skipHtmlEntitiesFields = all
 	# Number of chars per step (ex. 4 => A-D, E-H)
 	alphabeticPageBrowserStepSize = 4
-	startListWithFirstLetterCombo = 1
+	startListWithFirstLetterCombo = 0
 }
 
 
@@ -123,7 +123,7 @@ plugin.tx_x4epersdb_pi2 {
     researchGroupDetailPageUid = {$researchGroupDB.detailPageUid}
 
 	officeHourPageUid = {$persDB.officeHourPageUid}
-	
+
 
     onlyShowIfSessionEQUserUid = {$persDB.onlyShowIfSessionEQUserUid}
 	# show the personal pages on one single site

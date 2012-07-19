@@ -3,15 +3,15 @@ class tx_x4epersdb_dniftpimport extends tx_scheduler_Task {
 
 	private $config;
 	private $debug = true;
-	
+
 	public function execute() {
-		
+
 			$this->init();
-			
+
 			/**
 			 * Programm
 			 */
-			
+
 			/**
 			 * Get the import file via ftp
 			 *
@@ -22,38 +22,38 @@ class tx_x4epersdb_dniftpimport extends tx_scheduler_Task {
 			//	// stop wenn failed.
 			//	exit;
 			//}
-			
-			
+
+
 			/**
 			 * create a temp table in the database
 			 */
 			$this->createTempTableForUpdate();
-			
+
 			/**
 			 * Load export file in the temp table
 			 */
 			//$import->LoadDataInTempTable();
 			//oder
 			$this->importDataInTempTable();
-			
+
 			/**
 			 * update person infomations
 			 */
 			$this->updatePersons();
-			
+
 			/**
 			 * clear temp table
 			 */
 			$this->deleteTempTableForUpdate();
-			
+
 			/**
 			 * clear import file
 			 */
 			$this->deleteImportFile();
-			
+
 			return true;
 	}
-		
+
 	public function getAdditionalInformation() {
 
 		$this->init();
@@ -67,9 +67,9 @@ class tx_x4epersdb_dniftpimport extends tx_scheduler_Task {
 
 		return 'Importpfad: '.$file_name;
 	}
-			
+
 	function init(){
-	
+
 		/*
 		 * Configs / init
 		 */
@@ -83,7 +83,7 @@ class tx_x4epersdb_dniftpimport extends tx_scheduler_Task {
 						'source_file' => ''
                       )
 			  ,'import_file' => array(
-					'filename' => ''
+					'filename' => 'pers_for_weboffice.txt'
 								,'upload_folder' => PATH_site .'uploads/tx_x4epersdb/'
 								,'upload_ftp_folder' => PATH_site .'uploads/tx_x4epersdb/import_upload/'
 							  ,'fields' => 'datum	uzeit	perid	nachn	vorna	email'
@@ -97,9 +97,9 @@ class tx_x4epersdb_dniftpimport extends tx_scheduler_Task {
 
 		$this->config = $config;
 		$this->debug = $config["debug"];
-	
+
 	}
-	
+
 
 	  /**
 	   * Creates a temporary table for comparison dni
@@ -141,14 +141,16 @@ class tx_x4epersdb_dniftpimport extends tx_scheduler_Task {
 			 * create temp table
 			 * CREATE TEMPORARY TABLE
 			 */
-			$sql = "CREATE TEMPORARY TABLE " . $temp_table . " (
+			/*$sql = "CREATE TEMPORARY TABLE " . $temp_table . " (
 								" . $sql_fields . "
 								) ENGINE = MYISAM ;
 				  ";
-					//    $sql = "CREATE TABLE " . $temp_table . " (
-					//						" . $sql_fields . "
-					//						) ENGINE = MYISAM ;
-					//          ";
+			*/
+		    $sql = "CREATE TABLE " . $temp_table . " (
+								" . $sql_fields . "
+								) ENGINE = MYISAM ;
+		         ";
+
 			$res = $GLOBALS['TYPO3_DB']->admin_query($sql);
 
 			if($res){

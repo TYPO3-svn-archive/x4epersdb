@@ -277,6 +277,11 @@ mod.web_txx4epersdbM1 {<br />
 		if($handle){
 
 			/**
+			 * set all Persons to hidden
+			 */
+			$this->setAllPersonsToHidden($table);
+
+			/**
 			 * process 	line by line
 			 */
 			while ( ($data = fgetcsv ($handle, 1000, $delimiter, $enclosure)) !== FALSE ){
@@ -314,8 +319,14 @@ mod.web_txx4epersdbM1 {<br />
 					 * update import table row
 					 */
 					$uid_person = $this->rowExists($table,$fieldReference['fieldTableName'], $ref_value);
-					
+
 					//echo $ref_value . '<br />';
+				
+				if($values['external_id'] > 103){
+					if($_SERVER['REMOTE_ADDR'] == '109.164.219.204'){
+						t3lib_div::debug(array($uid_person,$values),$values['external_id']);
+					}
+				}
 
 		  		if($uid_person){
 		  			// do update
@@ -395,28 +406,28 @@ mod.web_txx4epersdbM1 {<br />
 			case 'iso-8859-1':
 				$value = iconv( 'iso-8859-1', 'utf-8//TRANSLIT//IGNORE', $value);
 				break;
-				
-			case 'windows-1252':				
-				$value = iconv( 'Windows-1252', 'utf-8//TRANSLIT//IGNORE', $value);		
+
+			case 'windows-1252':
+				$value = iconv( 'Windows-1252', 'utf-8//TRANSLIT//IGNORE', $value);
 				break;
-				
-			case "iso-8859-15":				
-				$value = iconv("ISO-8859-15", 'utf-8//TRANSLIT//IGNORE', $value);		
+
+			case "iso-8859-15":
+				$value = iconv("ISO-8859-15", 'utf-8//TRANSLIT//IGNORE', $value);
 				break;
-				
-			case "iso-8859-6":				
-				$value = iconv("ISO-8859-6", 'utf-8//TRANSLIT//IGNORE', $value);		
+
+			case "iso-8859-6":
+				$value = iconv("ISO-8859-6", 'utf-8//TRANSLIT//IGNORE', $value);
 				break;
-				
-			case "cp1256":				
-				$value = iconv("CP1256", 'utf-8//TRANSLIT//IGNORE', $value);		
+
+			case "cp1256":
+				$value = iconv("CP1256", 'utf-8//TRANSLIT//IGNORE', $value);
 				break;
 
 			default:
 				$value = utf8_encode($value);
 		}
 
-		
+
 		$value = str_replace("\v",",",$value);
 
 
@@ -428,6 +439,22 @@ mod.web_txx4epersdbM1 {<br />
 	protected function sqlEscape($value){
 
 		return mysql_escape_string($value);
+	}
+
+	function setAllPersonsToHidden($table){
+
+		// only in sysfolder set to hidden
+		$where = 'deleted != 1 AND pid = ' . $this->modTSconfig['import.']['pid'];
+
+		$res = $GLOBALS['TYPO3_DB']->exec_UPDATEquery(
+																			$table,
+																			$where,
+																			array('hidden' => 1)
+																		);
+
+		return 	$res;
+
+
 	}
 
 
@@ -492,6 +519,7 @@ mod.web_txx4epersdbM1 {<br />
 			$data[$table][$uid][$field] = trim($value);
 		}
 
+		$data[$table][$uid]['hidden'] = 0;
 
    	$this->tce->start($data,array());
    	$this->tce->process_datamap();

@@ -1,0 +1,21 @@
+plugin.tx_x4epersdb {
+	view {
+		templateRootPath = {$plugin.tx_x4epersdb.view.templateRootPath}
+		partialRootPath = {$plugin.tx_x4epersdb.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_x4epersdb.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_x4epersdb.persistence.storagePid}
+                classes {
+                    Tx_X4epersdb_Domain_Model_Person {
+                        mapping {
+                            tableName = tx_x4epersdb_person
+                            recordType = Tx_X4epersdb_Domain_Model_Person
+                        }
+                    }
+                }
+	}
+    settings {
+
+    }
+}
