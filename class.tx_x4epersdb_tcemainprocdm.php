@@ -85,7 +85,7 @@ class tx_x4epersdb_tcemainprocdm {
 	 */
     function processDatamap_postProcessFieldArray ($status, $table, $id, &$fieldArray, &$parent) {
 
-		if (($table == $this->personTable) || ($table == 'fe_users')) {
+		if (($table == $this->personTable) && intval($fieldArray['sys_language_uid'] == 0)) {
 			$pid = $this->getPopViewId($fieldArray);
 
 			// check if hooks are enabled
@@ -128,17 +128,19 @@ class tx_x4epersdb_tcemainprocdm {
 					}
 				}
 			
-				if($table == 'fe_users'){
-					switch($status) {
-						case 'update':
-							$this->updatePersonalFolder($fieldArray,$id,$table);
-							$this->syncUsernameAndEmail($fieldArray,$id,$table);
-							$this->syncUserGroup($fieldArray,'update',$id,$table);
-						break;
-						default:
-						break;
-					}
-				}
+				
+			}
+		}
+		
+		if($table == 'fe_users'){
+			switch($status) {
+				case 'update':
+					$this->updatePersonalFolder($fieldArray,$id,$table);
+					$this->syncUsernameAndEmail($fieldArray,$id,$table);
+					$this->syncUserGroup($fieldArray,'update',$id,$table);
+				break;
+				default:
+				break;
 			}
 		}
     }
